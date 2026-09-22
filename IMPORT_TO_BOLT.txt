@@ -1,0 +1,23 @@
+HOODMON v1.6.14 source checkpoint
+
+This package contains the current editable React/TypeScript source and all 110 Series 1 card assets after the browser-interaction UI hardening pass.
+
+Import the project root into Bolt. Run the normal npm install/build in an environment with registry access.
+This archive intentionally does NOT contain dist/, node_modules/, or temporary test output.
+
+UI hardening included:
+- visible P1 hand preserved
+- drag only during legal active Main Phase
+- select-then-click touch fallback
+- duplicate hand copies no longer all appear selected
+- stale hand selection clears when a card leaves hand
+- 10s/2s human Reaction Window timing preserved
+- visible 2s AI reaction response window
+- failed same-signature AI reaction cannot retry forever
+- phase/turn/feed animation feedback with reduced-motion support
+- 13/13 hand-legality runtime checks
+- 20/20 UI contract checks
+- 37/37 TS/TSX syntax parse
+- 110/110 card assets, all valid 2:3 ratio
+
+See UI_INTERACTION_TEST_REPORT_2026-09-22.md and UI_INTERACTION_TEST_MATRIX_2026-09-22.csv.

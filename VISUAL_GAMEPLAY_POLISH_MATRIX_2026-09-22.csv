@@ -1,0 +1,27 @@
+check,result,area
+Battle flash markup,PASS,combat feedback
+Attack declaration feedback,PASS,combat feedback
+Damage feedback,PASS,combat feedback
+Task completion feedback,PASS,combat feedback
+Knockout feedback,PASS,combat feedback
+Reaction feedback,PASS,combat feedback
+Battle flash timer cleanup,PASS,combat feedback
+Task race progress strip,PASS,battlefield readability
+Critical HP state,PASS,battlefield readability
+Ready/exhausted badge,PASS,battlefield readability
+Persistent support-zone labels,PASS,battlefield readability
+Keyboard Hoodmon/support zone activation,PASS,accessibility
+Victory result stats,PASS,victory presentation
+Victory route label,PASS,victory presentation
+Attack action styling,PASS,command presentation
+Reaction overlay above hand,PASS,decision presentation
+Promotion overlay above hand,PASS,decision presentation
+Pending-choice overlay above hand,PASS,decision presentation
+Mobile horizontal play lanes,PASS,responsive layout
+Mobile hand clearance,PASS,responsive layout
+Reduced-motion handling,PASS,accessibility
+Package version 1.6.15,PASS,release metadata
+TS/TSX syntax 37/37,PASS,source integrity
+CSS brace balance,PASS,source integrity
+Card assets 110/110,PASS,asset integrity
+Card aspect ratio 110/110,PASS,asset integrity

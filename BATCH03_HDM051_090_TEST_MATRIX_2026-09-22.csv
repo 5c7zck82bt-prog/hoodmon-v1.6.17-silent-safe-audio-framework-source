@@ -1,0 +1,41 @@
+Card,Focused Gameplay Test,Result
+HDM-051,Moonlit Hideout buffs Dark/Fairy and first Mark draws + Exhausts with Cherry,PASS
+HDM-052,Silent Claws gives +200 ATK and draws once after attacking Marked,PASS
+HDM-053,Shadow Step returns eligible Hoodmon then offers discounted evolution,PASS
+HDM-054,Rooftop Informant bottoms revealed support from opponent hand and can Mark after attack with Cherry,PASS
+HDM-055,Marked for Midnight top3 search and Shadowcat/Miso bonus Mark,PASS
+HDM-056,Smoke Screen Alibi exhausts attacker and prevents Dark/Fairy target from being chosen,PASS
+HDM-057,Nine Lives Escape returns would-be KO Hoodmon to hand,PASS
+HDM-058,Dead Drop Message can move a Task to top of separate Task Deck,PASS
+HDM-059,Blackmail File bottoms non-Hoodmon and draws with Dark/Fairy,PASS
+HDM-060,Perfect Getaway negates Marked attacker and returns it to hand; Cherry gains Bond,PASS
+HDM-061,"Leaked Evidence searches Trap, rearranges top2, and Capin draws",PASS
+HDM-062,"Data Snatch adds Dark/Tech, recycles Discard, then draws",PASS
+HDM-063,Tax Rell top3 keeps one card and discounts Smoke deployment by 1,PASS
+HDM-064,Mistling searches Water/Smoke and Vapor Trail becomes 300 after switching this turn,PASS
+HDM-065,"Vaporgeck evolves, recovers Water/Nature, weakens with Tax Rell, and attacks for 500 after evolving",PASS
+HDM-066,"Nebulizard attack trigger applies -400/Activate lock, Tax Rell gains Bond, and attack can reach 800",PASS
+HDM-067,Rooftop Condensation buffs Water HP and draws once after Water attack,PASS
+HDM-068,Dewdrop Cache searches Water/Nature and gains 1 Bond,PASS
+HDM-069,Spotlet searches Smoke and Quick Dash can switch with Reserve after attack,PASS
+HDM-070,"Vapor Cache returns one Water/Nature/Smoke, shuffles another, and gains Bond with Vaporgeck/Nebulizard",PASS
+HDM-071,"Gecko Ambush deals 200, -200 ATK, and Vaporgeck adds next-turn attack lock",PASS
+HDM-072,Mist Network negates targeted effect and can recover eligible discard,PASS
+HDM-073,Smokescreen Slip reduces attack by 300 and can switch Active before damage,PASS
+HDM-074,"Urban Mist Network grants +200 HP, cycles on Magic, and provides first-card discount",PASS
+HDM-075,Mist Map searches Stage 1 Water/Smoke and gains Bond with Tax Rell,PASS
+HDM-076,"Tiny Creatures Bigger Moves requires Basic TASK 700+, grants Bond, readies, and locks repeat Task",PASS
+HDM-077,What You Don't See... Obeys switches Water/Smoke defender and reduces attack by 200,PASS
+HDM-078,Capin MDH inspects top3 and passive grants +100 TASK after deck look,PASS
+HDM-079,Kitklaws top3 finds Trap/Research and Note Swipe draws after opponent hand reveal,PASS
+HDM-080,"Scratchwiser Pattern Read weakens through next turn, Capin reveals, and Silent Claws hits 400",PASS
+HDM-081,"Calicore recovers Research/Trap/Truth card, Capin gains Bond, Future Sense hits 700 vs Exhausted",PASS
+HDM-082,"Monical triggers once after Magic/Tamer/Trap-style activation, applies -300/lock, and Oracle Burst hits 1000 vs Exhausted",PASS
+HDM-083,Truth Network gives Psychic +100 TASK and once-per-turn top-change Bond,PASS
+HDM-084,"Data Over Fear rearranges top2, grants +200 TASK, and Capin draws/discards",PASS
+HDM-085,Research Record Reveal searches Psychic/Trap and Kitklaws/Scratchwiser Active bonus draws,PASS
+HDM-086,Signal Intercept no-pay branch negates Standard Magic and optional reveal resolves,PASS
+HDM-087,Field Notes Archive recycles two different names and draws,PASS
+HDM-088,Eyewitness Report takes a Hoodmon from top4 and bottoms the rest,PASS
+HDM-089,Hidden Pattern Decode searches Monical then forces one discard,PASS
+HDM-090,On Air Tonight play trigger takes one of top2 and opponent-reveal trigger draws/discards once per turn,PASS

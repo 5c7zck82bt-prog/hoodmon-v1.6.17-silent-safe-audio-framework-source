@@ -1,0 +1,29 @@
+#,Check,Result,Detail
+1,Attack trigger excludes Task declarations,PASS,Task declarations do not trigger the attack projectile.
+2,Directional attack motion,PASS,P1/P2 attacks travel in opposing board directions.
+3,Hoodmon damage popup,PASS,Hoodmon damage produces floating DMG feedback.
+4,LP damage popup,PASS,Direct Tamer damage produces floating LP feedback.
+5,Deploy transition,PASS,New Hoodmon cards animate into their slot.
+6,Switch/promotion transition,PASS,Moved/promoted instances use a separate move animation.
+7,Evolution transition,PASS,Evolution receives a light sweep/morph.
+8,Damage hit reaction,PASS,Damage delta triggers card shake/flash.
+9,KO ghost exit,PASS,Defeated card art persists briefly while exiting.
+10,Switch never masquerades as KO,PASS,Cross-slot movement is recognized before KO classification.
+11,Neutral leave-play transition,PASS,Non-defeat exits receive neutral leave motion.
+12,Task-completion celebration,PASS,Completed Tasks show a brief +1 TASK burst.
+13,Victory impact sequence,PASS,"Result screen uses rings, title impact, stats reveal, and finite confetti."
+14,Reduced-motion support,PASS,Heavy transient overlays are suppressed for reduced motion.
+15,Overlays are pointer-transparent,PASS,Visual overlays cannot steal clicks/taps.
+16,No infinite v1.6.16 animation,PASS,All new animations end automatically.
+17,Decision UI remains above impact overlays,PASS,Attack/damage effects render below the Reaction panel.
+18,Battle engine unchanged,PASS,Every src/game/engine/*.ts hash matches v1.6.15.
+19,Runtime/legality wiring unchanged,PASS,"GameContext, runtime definitions, and hand legality match v1.6.15."
+20,110 card assets retained,PASS,110/110 card files present.
+21,110 card aspect ratios retained,PASS,All card images remain approximately 2:3.
+22,No node_modules in release tree,PASS,Dependency folder is not bundled.
+23,No stale dist output,PASS,Compiled output is not mixed into source release.
+24,No TypeScript build cache artifacts,PASS,Validation caches were removed.
+25,Version metadata synchronized,PASS,package.json/package-lock.json identify v1.6.16.
+26,CSS brace structure balanced,PASS,styles.css block braces are balanced.
+27,Changed TSX parses without syntax errors,PASS,0 TS1xxx parser errors; full browser build requires npm dependencies.
+28,Changes confined to UI/release metadata,PASS,"Changed: README.md, package-lock.json, package.json, src/App.tsx, src/components/BattleControls.tsx, src/components/PlayerPanel.tsx, src/styles.css"

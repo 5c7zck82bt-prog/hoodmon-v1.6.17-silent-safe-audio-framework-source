@@ -1,0 +1,34 @@
+category,check,result
+Hand legality,Basic -> empty Active,PASS
+Hand legality,Basic Reserve blocked without Active,PASS
+Hand legality,Basic Reserve legal with Active,PASS
+Hand legality,Stage 2 evolution legal Round 2,PASS
+Hand legality,Evolution blocked Round 1,PASS
+Hand legality,Hand play blocked outside Main,PASS
+Hand legality,Hand play blocked on opponent turn,PASS
+Hand legality,Quick Magic blocked from Main drop,PASS
+Hand legality,Trap -> open Trap zone,PASS
+Hand legality,Trap -> occupied Trap blocked,PASS
+Hand legality,Field -> Field zone,PASS
+Hand legality,Standard Magic -> Magic zone,PASS
+Hand legality,Insufficient Bond blocks deploy,PASS
+Hand UI,P1 hand remains rendered,PASS
+Hand UI,Drag enabled only own active Main,PASS
+Hand UI,Select-then-click fallback,PASS
+Hand UI,Duplicate visual selection isolated,PASS
+Hand UI,Stale selection clears when card leaves hand,PASS
+Reaction UI,10s human legal-response timer,PASS
+Reaction UI,2s human no-response auto-pass,PASS
+Reaction UI,2s AI response-window display,PASS
+AI timing,Repeated failed reaction safely passes,PASS
+Visual feedback,Legal drop glow,PASS
+Visual feedback,Phase/turn/feed animation hooks,PASS
+Visual feedback,Reduced-motion override,PASS
+Accessibility,Battle Feed aria-live,PASS
+Mobile,<=800 hand layout,PASS
+Mobile,<=520 hand layout,PASS
+Source integrity,37/37 TS/TSX syntax parse,PASS
+Source integrity,CSS brace balance,PASS
+Assets,110/110 present,PASS
+Assets,110/110 valid 2:3 ratio,PASS
+Environment,Live React/Vite browser render,NOT RUN - registry/runtime unavailable

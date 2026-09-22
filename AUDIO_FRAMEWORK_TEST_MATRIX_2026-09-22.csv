@@ -1,0 +1,33 @@
+Area,Check,Result,Detail
+Release,Version bump,PASS,1.6.17
+Registry,21 prepared cue slots,PASS,21 slots
+Safety,Every cue has null source,PASS,
+Safety,Every cue has null license ID,PASS,
+Safety,Every cue commercial approval is false,PASS,
+Safety,Installed count requires source + license + approval,PASS,
+Safety,Playback gate requires source + license + approval,PASS,
+Safety,No playable audio files bundled,PASS,
+Licensing,Manifest starts empty,PASS,assets=0
+Licensing,Manifest requires provenance fields,PASS,
+Licensing,Audio approval checklist included,PASS,
+Settings,AudioProvider mounted at app root,PASS,
+Settings,Settings persist locally,PASS,
+Settings,Master controls wired,PASS,
+Settings,Music channel controls wired,PASS,
+Settings,Battle SFX channel controls wired,PASS,
+Settings,UI/card channel controls wired,PASS,
+Settings,Pause-when-hidden wired,PASS,
+Browser,User gesture unlock wired,PASS,
+UI,Header mute and settings controls,PASS,
+UI,Mobile settings access retained,PASS,
+UI,Settings modal has master/music/SFX/UI controls,PASS,
+UI,Settings modal exposes license safety status,PASS,
+Hooks,Menu/battle music routing,PASS,
+Hooks,Victory/defeat music and stings,PASS,
+Hooks,Battle event cues wired,PASS,
+Hooks,Card pickup/drop cues wired,PASS,
+Engine,Battle engine unchanged,PASS,
+Assets,110 card assets present,PASS,110
+Assets,Card aspect ratios unchanged,PASS,
+Packaging,No dependency/build-cache artifacts,PASS,
+CSS,CSS braces balanced,PASS,778/778
