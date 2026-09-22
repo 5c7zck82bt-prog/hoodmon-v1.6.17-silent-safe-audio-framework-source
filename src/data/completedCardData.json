@@ -1,0 +1,4157 @@
+{
+  "series": 1,
+  "card_count": 77,
+  "cards": [
+    {
+      "card_series_id": "HDM-001",
+      "card_name": "O.D.D. Paul",
+      "card_type": "tamer",
+      "deck_target": "N/A - Tamer",
+      "max_copies": 1,
+      "rarity": "SR",
+      "alignment": [
+        "Beast"
+      ],
+      "archetype_tags": [
+        "Neighborhood Loyalty",
+        "Beast"
+      ],
+      "flavor_text": "Puppies today. Legends tomorrow.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-001_full.png"
+      },
+      "starting_lp": 2500,
+      "passive_effect": {
+        "raw_text": "Once per turn, when one of your Beast Hoodmon with Neighborhood Loyalty attacks, gain 1 Bond. You may exhaust this Tamer to look at the top 4 cards of your deck. Reveal 1 Beast card or 1 card that mentions Neighborhood Loyalty and put it into your hand. Put the rest on the bottom of your deck.",
+        "tokens": [
+          {
+            "trigger": "once_per_turn",
+            "condition": "beast_hoodmon_with_neighborhood_loyalty_attacks",
+            "action": "gain_bond",
+            "amount": 1
+          },
+          {
+            "cost": "exhaust_tamer",
+            "action": "look_top",
+            "count": 4,
+            "zone": "hoodmon_deck"
+          },
+          {
+            "action": "add_to_hand",
+            "count": 1,
+            "filter": "Beast OR mentions:Neighborhood Loyalty"
+          },
+          {
+            "action": "put_rest_bottom",
+            "zone": "hoodmon_deck"
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-016",
+      "card_name": "Cinnamon",
+      "card_type": "tamer",
+      "deck_target": "N/A - Tamer",
+      "max_copies": 1,
+      "rarity": "SR",
+      "alignment": [
+        "Wind",
+        "Psychic"
+      ],
+      "archetype_tags": [
+        "Bird-Tech Block",
+        "Bird",
+        "Tech"
+      ],
+      "flavor_text": "Chaos is her superpower.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-016_full.png"
+      },
+      "starting_lp": 2500,
+      "passive_effect": {
+        "raw_text": "Once per turn, when one of your Wind Hoodmon completes a Task, look at the top 2 cards of either Hoodmon Deck and put them back in any order. You may exhaust Cinnamon to ready 1 Wind Hoodmon that completed a Task this turn; that Hoodmon cannot attempt another Task this turn.",
+        "tokens": [
+          {
+            "trigger": "once_per_turn",
+            "condition": "your_wind_hoodmon_completes_task",
+            "action": "look_top",
+            "count": 2,
+            "zone": "either_hoodmon_deck"
+          },
+          {
+            "action": "rearrange_top",
+            "count": 2,
+            "zone": "same_deck"
+          },
+          {
+            "cost": "exhaust_tamer",
+            "condition": "wind_hoodmon_completed_task_this_turn",
+            "action": "ready",
+            "target": "your_wind_hoodmon"
+          },
+          {
+            "restriction": "target_cannot_attempt_another_task_this_turn"
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-031",
+      "card_name": "Peaches",
+      "card_type": "tamer",
+      "deck_target": "N/A - Tamer",
+      "max_copies": 1,
+      "rarity": "SR",
+      "alignment": [
+        "Beast",
+        "Dark"
+      ],
+      "archetype_tags": [
+        "Pack Pressure",
+        "Pit Bull",
+        "Charm"
+      ],
+      "flavor_text": "I know my worth. I just decide when to cash in.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-031_full.png"
+      },
+      "starting_lp": 2500,
+      "passive_effect": {
+        "raw_text": "Once per turn, when one of your Beast Hoodmon moves from Reserve to Active, it gains +200 ATK until end of turn. You may exhaust Peaches to choose 1 opposing Active Hoodmon; it gets -200 ATK until end of turn. If you control a Beast/Dark Hoodmon, draw 1 card, then discard 1 card.",
+        "tokens": [
+          {
+            "trigger": "once_per_turn",
+            "condition": "your_beast_moves_reserve_to_active",
+            "action": "modify_stat",
+            "target": "that_hoodmon",
+            "stat": "atk",
+            "amount": 200,
+            "duration": "end_of_turn"
+          },
+          {
+            "cost": "exhaust_tamer",
+            "action": "modify_stat",
+            "target": "opposing_active_hoodmon",
+            "stat": "atk",
+            "amount": -200,
+            "duration": "end_of_turn"
+          },
+          {
+            "condition": "control_beast_dark_hoodmon",
+            "actions": [
+              {
+                "action": "draw",
+                "amount": 1
+              },
+              {
+                "action": "discard",
+                "amount": 1,
+                "target": "self_hand"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-047",
+      "card_name": "Cherry",
+      "card_type": "tamer",
+      "deck_target": "N/A - Tamer",
+      "max_copies": 1,
+      "rarity": "SR",
+      "alignment": [
+        "Dark"
+      ],
+      "archetype_tags": [
+        "High-Class Charm",
+        "Feline",
+        "Shadow"
+      ],
+      "flavor_text": "I don't start nothing\u2014but I finish everything.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-047_full.png"
+      },
+      "starting_lp": 2500,
+      "passive_effect": {
+        "raw_text": "Once per turn, when one of your Dark or Fairy Hoodmon switches between Active and Reserve, look at the top 2 cards of your Hoodmon Deck and put them back in any order. You may exhaust Cherry to switch your Active Hoodmon with 1 Reserve Hoodmon.",
+        "tokens": [
+          {
+            "trigger": "once_per_turn",
+            "condition": "your_dark_or_fairy_switches_active_reserve",
+            "action": "look_top",
+            "count": 2,
+            "zone": "hoodmon_deck"
+          },
+          {
+            "action": "rearrange_top",
+            "count": 2,
+            "zone": "hoodmon_deck"
+          },
+          {
+            "cost": "exhaust_tamer",
+            "action": "switch_active_with_reserve",
+            "target": "your_hoodmon"
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-063",
+      "card_name": "Tax Rell",
+      "card_type": "tamer",
+      "deck_target": "N/A - Tamer",
+      "max_copies": 1,
+      "rarity": "SR",
+      "alignment": [
+        "Water",
+        "Smoke"
+      ],
+      "archetype_tags": [
+        "Mist Network",
+        "Reptile",
+        "Water",
+        "Smoke"
+      ],
+      "flavor_text": "Find the route nobody else can see.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-063_full.png"
+      },
+      "starting_lp": 2500,
+      "passive_effect": {
+        "raw_text": "Once per turn, when you play a Water or Smoke card, one of your Hoodmon gets +100 TASK until end of turn. You may exhaust Tax Rell to look at the top 3 cards of your Hoodmon Deck; reveal 1 Water or Smoke card and put it into your hand, then put the rest on the bottom in any order.",
+        "tokens": [
+          {
+            "trigger": "once_per_turn",
+            "condition": "you_play_water_or_smoke_card",
+            "action": "modify_stat",
+            "target": "your_hoodmon",
+            "stat": "task_rating",
+            "amount": 100,
+            "duration": "end_of_turn"
+          },
+          {
+            "cost": "exhaust_tamer",
+            "action": "look_top",
+            "count": 3,
+            "zone": "hoodmon_deck"
+          },
+          {
+            "action": "add_to_hand",
+            "count": 1,
+            "filter": "Water OR Smoke"
+          },
+          {
+            "action": "put_rest_bottom",
+            "zone": "hoodmon_deck",
+            "order": "any"
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-078",
+      "card_name": "Capin MDH",
+      "card_type": "tamer",
+      "deck_target": "N/A - Tamer",
+      "max_copies": 1,
+      "rarity": "SR",
+      "alignment": [
+        "Psychic"
+      ],
+      "archetype_tags": [
+        "Truth Network",
+        "Tech",
+        "Feline"
+      ],
+      "flavor_text": "I don't fight monsters. I fight lies about them.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-078_full.png"
+      },
+      "starting_lp": 2500,
+      "passive_effect": {
+        "raw_text": "Once per turn, after you look at or reveal one or more cards from a deck, choose 1 of your Hoodmon; it gains +100 TASK until end of turn. You may exhaust Capin MDH to look at the top 3 cards of either Hoodmon Deck and put them back in any order.",
+        "tokens": [
+          {
+            "trigger": "once_per_turn",
+            "condition": "you_look_at_or_reveal_cards_from_deck",
+            "action": "modify_stat",
+            "target": "your_hoodmon",
+            "stat": "task_rating",
+            "amount": 100,
+            "duration": "end_of_turn"
+          },
+          {
+            "cost": "exhaust_tamer",
+            "action": "look_top",
+            "count": 3,
+            "zone": "either_hoodmon_deck"
+          },
+          {
+            "action": "rearrange_top",
+            "count": 3,
+            "zone": "same_deck"
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-086",
+      "card_name": "EB, Natural Bond",
+      "card_type": "tamer",
+      "deck_target": "N/A - Tamer",
+      "max_copies": 1,
+      "rarity": "UR",
+      "alignment": [
+        "Fire",
+        "Dark"
+      ],
+      "archetype_tags": [
+        "Dual Flame Bond",
+        "Bearded Dragon",
+        "Reptile",
+        "Igniscale"
+      ],
+      "flavor_text": "Two lines. One family.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-086_full.png"
+      },
+      "starting_lp": 2500,
+      "passive_effect": {
+        "raw_text": "Once per turn, when a Bearded Dragon Hoodmon enters your Reserve, gain 1 Bond. Once per turn, one Igniscale-line Hoodmon you control may evolve into the next Stage of either the Bright Flame or Shadow Ember line, paying its normal Bond Cost. Your Active Bearded Dragon Hoodmon gains +100 ATK and +100 HP for each Bearded Dragon in your Reserve.",
+        "tokens": [
+          {
+            "trigger": "once_per_turn",
+            "condition": "bearded_dragon_enters_your_reserve",
+            "action": "gain_bond",
+            "amount": 1
+          },
+          {
+            "trigger": "once_per_turn",
+            "action": "allow_evolution",
+            "filter": "Igniscale-line",
+            "branches": [
+              "Bright Flame",
+              "Shadow Ember"
+            ],
+            "cost": "printed_bond_cost"
+          },
+          {
+            "action": "modify_stat",
+            "target": "your_active_bearded_dragon",
+            "stat": "atk",
+            "amount_per": "your_reserve_bearded_dragon",
+            "amount": 100
+          },
+          {
+            "action": "modify_stat",
+            "target": "your_active_bearded_dragon",
+            "stat": "hp",
+            "amount_per": "your_reserve_bearded_dragon",
+            "amount": 100
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-002",
+      "card_name": "Alley Pup",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "C",
+      "alignment": [
+        "Beast"
+      ],
+      "archetype_tags": [
+        "Neighborhood Loyalty",
+        "Beast"
+      ],
+      "flavor_text": "Small trouble. Big potential.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-002_full.png"
+      },
+      "stage_level": 1,
+      "stage_name": "Basic",
+      "evolves_from": null,
+      "bond_cost": 1,
+      "atk": 400,
+      "hp": 700,
+      "task_rating": 100,
+      "awaken_effect": {
+        "trigger": "on_deploy",
+        "raw_text": "When this card is played, look at the top 3 cards of your Hoodmon Deck. Reveal 1 Beast card or 1 card that mentions Neighborhood Loyalty from among them and put it into your hand. Put the rest on the bottom of your Hoodmon Deck.",
+        "tokens": [
+          {
+            "trigger": "on_deploy",
+            "action": "look_top",
+            "count": 3,
+            "zone": "hoodmon_deck"
+          },
+          {
+            "action": "add_to_hand",
+            "count": 1,
+            "filter": "Beast OR mentions:Neighborhood Loyalty"
+          },
+          {
+            "action": "put_rest_bottom",
+            "zone": "hoodmon_deck"
+          }
+        ]
+      },
+      "attacks": [
+        {
+          "attack_name": "Puppy Pounce",
+          "cost": 0,
+          "base_damage": 200,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 200 damage. If you control a Tamer, this attack deals 300 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 200,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "control_a_tamer",
+                "replace_damage": 300
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-003",
+      "card_name": "Bluefang Hound",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "U",
+      "alignment": [
+        "Beast"
+      ],
+      "archetype_tags": [
+        "Neighborhood Loyalty",
+        "Beast"
+      ],
+      "flavor_text": "The block knows its bark before it sees the blue flash.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-003_full.png"
+      },
+      "stage_level": 2,
+      "stage_name": "Evolved",
+      "evolves_from": "HDM-002",
+      "bond_cost": 3,
+      "atk": 1000,
+      "hp": 1600,
+      "task_rating": 300,
+      "awaken_effect": {
+        "raw_text": "When this card evolves, gain 1 Bond if O.D.D. Paul is your Tamer.",
+        "tokens": [
+          {
+            "trigger": "on_evolve",
+            "condition": "tamer_is_odd_paul",
+            "action": "gain_bond",
+            "amount": 1
+          }
+        ],
+        "trigger": "on_evolve"
+      },
+      "attacks": [
+        {
+          "attack_name": "Corner Rush",
+          "cost": 0,
+          "base_damage": 500,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 500 damage. If O.D.D. Paul is your Tamer, it deals 700 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 500,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "tamer_is_odd_paul",
+                "replace_damage": 700
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-004",
+      "card_name": "Drunk Fist Wulf",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "SR",
+      "alignment": [
+        "Beast"
+      ],
+      "archetype_tags": [
+        "Neighborhood Loyalty",
+        "Beast"
+      ],
+      "flavor_text": "Every stagger is a setup. Every stumble hides a strike.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-004_full.png"
+      },
+      "stage_level": 3,
+      "stage_name": "Ascended",
+      "evolves_from": "HDM-003",
+      "bond_cost": 5,
+      "atk": 1900,
+      "hp": 3000,
+      "task_rating": 600,
+      "awaken_effect": {
+        "raw_text": "When this card evolves, choose 1 opposing Hoodmon; it gets -300 ATK until the end of your opponent's next turn.",
+        "tokens": [
+          {
+            "trigger": "on_evolve",
+            "action": "modify_stat",
+            "target": "opposing_hoodmon",
+            "stat": "atk",
+            "amount": -300,
+            "duration": "end_of_opponents_next_turn"
+          }
+        ],
+        "trigger": "on_evolve"
+      },
+      "attacks": [
+        {
+          "attack_name": "Drunk Fist Barrage",
+          "cost": 0,
+          "base_damage": 900,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 900 damage. If you have 7 or more Bond, you may spend 1 Bond; if you do, this attack deals 1100 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 900,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "bond>=7",
+                "optional_cost": {
+                  "resource": "bond",
+                  "amount": 1
+                },
+                "replace_damage": 1100
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-005",
+      "card_name": "Loyal Pack Mate",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "C",
+      "alignment": [
+        "Beast"
+      ],
+      "archetype_tags": [
+        "Neighborhood Loyalty",
+        "Beast"
+      ],
+      "flavor_text": "A good packmate watches the whole block, not just the fight.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-005_full.png"
+      },
+      "stage_level": 1,
+      "stage_name": "Basic",
+      "evolves_from": null,
+      "bond_cost": 1,
+      "atk": 350,
+      "hp": 800,
+      "task_rating": 150,
+      "awaken_effect": {
+        "raw_text": "When this card is played, if you control another Beast Hoodmon, heal 200 damage from 1 of your Hoodmon.",
+        "tokens": [
+          {
+            "trigger": "on_deploy",
+            "condition": "control_another_beast",
+            "action": "heal",
+            "target": "your_hoodmon",
+            "amount": 200
+          }
+        ],
+        "trigger": "on_deploy"
+      },
+      "attacks": [
+        {
+          "attack_name": "Pack Check",
+          "cost": 0,
+          "base_damage": 200,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 200 damage. If you control another Beast Hoodmon, it deals 300 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 200,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "control_another_beast",
+                "replace_damage": 300
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-006",
+      "card_name": "Back Alley Guardian",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "U",
+      "alignment": [
+        "Beast"
+      ],
+      "archetype_tags": [
+        "Neighborhood Loyalty",
+        "Beast"
+      ],
+      "flavor_text": "If danger reaches the alley, it has already gone too far.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-006_full.png"
+      },
+      "stage_level": 2,
+      "stage_name": "Evolved",
+      "evolves_from": "HDM-005",
+      "bond_cost": 3,
+      "atk": 1000,
+      "hp": 1800,
+      "task_rating": 350,
+      "awaken_effect": {
+        "raw_text": "When this card evolves, you may move up to 300 damage from another Beast Hoodmon you control onto this Hoodmon.",
+        "tokens": [
+          {
+            "trigger": "on_evolve",
+            "action": "move_damage",
+            "from": "another_your_beast_hoodmon",
+            "to": "self",
+            "max_amount": 300
+          }
+        ],
+        "trigger": "on_evolve"
+      },
+      "attacks": [
+        {
+          "attack_name": "Guardian Shoulder",
+          "cost": 0,
+          "base_damage": 500,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 500 damage. If this Hoodmon has damage on it, it deals 600 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 500,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "self_damage>0",
+                "replace_damage": 600
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-007",
+      "card_name": "Concrete Warden",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "R",
+      "alignment": [
+        "Beast"
+      ],
+      "archetype_tags": [
+        "Neighborhood Loyalty",
+        "Beast"
+      ],
+      "flavor_text": "Built like the stoop it guards: hard, steady, and not moving.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-007_full.png"
+      },
+      "stage_level": 3,
+      "stage_name": "Ascended",
+      "evolves_from": "HDM-006",
+      "bond_cost": 5,
+      "atk": 1800,
+      "hp": 3400,
+      "task_rating": 550,
+      "awaken_effect": {
+        "raw_text": "When this card evolves, heal 200 damage from each of your Beast Hoodmon.",
+        "tokens": [
+          {
+            "trigger": "on_evolve",
+            "action": "heal",
+            "target": "each_your_beast_hoodmon",
+            "amount": 200
+          }
+        ],
+        "trigger": "on_evolve"
+      },
+      "attacks": [
+        {
+          "attack_name": "Blockade Bash",
+          "cost": 0,
+          "base_damage": 800,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 800 damage. The defending Hoodmon cannot switch between Active and Reserve until the end of its controller's next turn.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 800,
+                "target": "defending_hoodmon"
+              },
+              {
+                "action": "restrict_switch",
+                "target": "defending_hoodmon",
+                "duration": "end_of_controllers_next_turn"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-017",
+      "card_name": "Squab",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "C",
+      "alignment": [
+        "Wind"
+      ],
+      "archetype_tags": [
+        "Bird-Tech Block",
+        "Bird",
+        "Tech"
+      ],
+      "flavor_text": "Looks lost. Sees more than it lets on.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-017_full.png"
+      },
+      "stage_level": 1,
+      "stage_name": "Basic",
+      "evolves_from": null,
+      "bond_cost": 1,
+      "atk": 300,
+      "hp": 600,
+      "task_rating": 200,
+      "awaken_effect": {
+        "raw_text": "When this card is played, look at the top 2 cards of your Hoodmon Deck and put them back in any order.",
+        "tokens": [
+          {
+            "trigger": "on_deploy",
+            "action": "look_top",
+            "count": 2,
+            "zone": "hoodmon_deck"
+          },
+          {
+            "action": "rearrange_top",
+            "count": 2,
+            "zone": "hoodmon_deck"
+          }
+        ],
+        "trigger": "on_deploy"
+      },
+      "attacks": [
+        {
+          "attack_name": "Lucky Poo",
+          "cost": 0,
+          "base_damage": 200,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 200 damage. The defending Hoodmon gets -100 TASK until the end of its controller's next turn.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 200,
+                "target": "defending_hoodmon"
+              },
+              {
+                "action": "modify_stat",
+                "target": "defending_hoodmon",
+                "stat": "task_rating",
+                "amount": -100,
+                "duration": "end_of_controllers_next_turn"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-018",
+      "card_name": "Sky Rat",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "U",
+      "alignment": [
+        "Wind",
+        "Psychic"
+      ],
+      "archetype_tags": [
+        "Bird-Tech Block",
+        "Bird",
+        "Tech"
+      ],
+      "flavor_text": "Every rooftop is a camera angle.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-018_full.png"
+      },
+      "stage_level": 2,
+      "stage_name": "Evolved",
+      "evolves_from": "HDM-017",
+      "bond_cost": 3,
+      "atk": 900,
+      "hp": 1500,
+      "task_rating": 450,
+      "awaken_effect": {
+        "raw_text": "When this card evolves, look at the top 3 cards of your opponent's Hoodmon Deck and put them back in any order.",
+        "tokens": [
+          {
+            "trigger": "on_evolve",
+            "action": "look_top",
+            "count": 3,
+            "zone": "opponent_hoodmon_deck"
+          },
+          {
+            "action": "rearrange_top",
+            "count": 3,
+            "zone": "opponent_hoodmon_deck"
+          }
+        ],
+        "trigger": "on_evolve"
+      },
+      "attacks": [
+        {
+          "attack_name": "Feathered Chaos",
+          "cost": 0,
+          "base_damage": 450,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 450 damage. If you looked at or revealed a card from your opponent's deck this turn, it deals 600 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 450,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "looked_at_or_revealed_opponent_deck_this_turn",
+                "replace_damage": 600
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-019",
+      "card_name": "Bird Brain",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "SR",
+      "alignment": [
+        "Wind",
+        "Psychic"
+      ],
+      "archetype_tags": [
+        "Bird-Tech Block",
+        "Bird",
+        "Tech"
+      ],
+      "flavor_text": "The dumb look is part of the firewall.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-019_full.png"
+      },
+      "stage_level": 3,
+      "stage_name": "Ascended",
+      "evolves_from": "HDM-018",
+      "bond_cost": 5,
+      "atk": 1600,
+      "hp": 2500,
+      "task_rating": 800,
+      "awaken_effect": {
+        "raw_text": "When this card evolves, reveal the top card of your opponent's Hoodmon Deck. If it is a Magic, Trap, or Field card, draw 1 card. Put the revealed card back on top.",
+        "tokens": [
+          {
+            "trigger": "on_evolve",
+            "action": "reveal_top",
+            "zone": "opponent_hoodmon_deck",
+            "count": 1
+          },
+          {
+            "condition": "revealed_card_type_in:Magic,Trap,Field",
+            "action": "draw",
+            "amount": 1
+          },
+          {
+            "action": "return_revealed_top",
+            "zone": "opponent_hoodmon_deck"
+          }
+        ],
+        "trigger": "on_evolve"
+      },
+      "attacks": [
+        {
+          "attack_name": "Loose Cannon",
+          "cost": 0,
+          "base_damage": 700,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 700 damage. If the top card of your opponent's Hoodmon Deck is a Magic, Trap, or Field card, this attack deals 1000 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 700,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "opponent_top_card_type_in:Magic,Trap,Field",
+                "replace_damage": 1000
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-020",
+      "card_name": "Block Pigeon",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "C",
+      "alignment": [
+        "Wind"
+      ],
+      "archetype_tags": [
+        "Bird-Tech Block",
+        "Bird",
+        "Tech"
+      ],
+      "flavor_text": "One bird, one block, one hundred open signals.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-020_full.png"
+      },
+      "stage_level": 1,
+      "stage_name": "Basic",
+      "evolves_from": null,
+      "bond_cost": 1,
+      "atk": 400,
+      "hp": 700,
+      "task_rating": 250,
+      "awaken_effect": {
+        "raw_text": "When this card is played, if you control a Field card, draw 1 card, then discard 1 card.",
+        "tokens": [
+          {
+            "trigger": "on_deploy",
+            "condition": "control_field",
+            "actions": [
+              {
+                "action": "draw",
+                "amount": 1
+              },
+              {
+                "action": "discard",
+                "amount": 1,
+                "target": "self_hand"
+              }
+            ]
+          }
+        ],
+        "trigger": "on_deploy"
+      },
+      "attacks": [
+        {
+          "attack_name": "Block Peck",
+          "cost": 0,
+          "base_damage": 200,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 200 damage. If you control a Tech card, it deals 300 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 200,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "control_tech_card",
+                "replace_damage": 300
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-021",
+      "card_name": "Rooftop Bully",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "U",
+      "alignment": [
+        "Wind"
+      ],
+      "archetype_tags": [
+        "Bird-Tech Block",
+        "Bird"
+      ],
+      "flavor_text": "Territory starts at the ledge.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-021_full.png"
+      },
+      "stage_level": 1,
+      "stage_name": "Basic",
+      "evolves_from": null,
+      "bond_cost": 2,
+      "atk": 500,
+      "hp": 900,
+      "task_rating": 150,
+      "awaken_effect": {
+        "raw_text": "When this card is played, choose 1 opposing Active Hoodmon; it gets -100 ATK until end of turn.",
+        "tokens": [
+          {
+            "trigger": "on_deploy",
+            "action": "modify_stat",
+            "target": "opposing_active_hoodmon",
+            "stat": "atk",
+            "amount": -100,
+            "duration": "end_of_turn"
+          }
+        ],
+        "trigger": "on_deploy"
+      },
+      "attacks": [
+        {
+          "attack_name": "Wing Check",
+          "cost": 0,
+          "base_damage": 300,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 300 damage. If the defending Hoodmon has a lower TASK rating than this Hoodmon, it deals 400 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 300,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "defending_task<self_task",
+                "replace_damage": 400
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-032",
+      "card_name": "Puppy",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "C",
+      "alignment": [
+        "Beast"
+      ],
+      "archetype_tags": [
+        "Pack Pressure",
+        "Pit Bull",
+        "Charm"
+      ],
+      "flavor_text": "Cute until the leash is off\u2014then the block remembers the bite.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-032_full.png"
+      },
+      "stage_level": 1,
+      "stage_name": "Basic",
+      "evolves_from": null,
+      "bond_cost": 1,
+      "atk": 400,
+      "hp": 800,
+      "task_rating": 100,
+      "awaken_effect": {
+        "raw_text": "When this card is played, if Peaches is your Tamer, you may switch this Hoodmon with 1 of your Reserve Hoodmon.",
+        "tokens": [
+          {
+            "trigger": "on_deploy",
+            "condition": "tamer_is_peaches",
+            "action": "may_switch_with_reserve",
+            "target": "self"
+          }
+        ],
+        "trigger": "on_deploy"
+      },
+      "attacks": [
+        {
+          "attack_name": "Bite N' Hold",
+          "cost": 0,
+          "base_damage": 200,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 200 damage. The defending Hoodmon cannot switch between Active and Reserve until the end of turn.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 200,
+                "target": "defending_hoodmon"
+              },
+              {
+                "action": "restrict_switch",
+                "target": "defending_hoodmon",
+                "duration": "end_of_turn"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-033",
+      "card_name": "Brawler",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "U",
+      "alignment": [
+        "Beast",
+        "Dark"
+      ],
+      "archetype_tags": [
+        "Pack Pressure",
+        "Pit Bull",
+        "Charm"
+      ],
+      "flavor_text": "The chain is decoration. The jaw is the real lock.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-033_full.png"
+      },
+      "stage_level": 2,
+      "stage_name": "Evolved",
+      "evolves_from": "HDM-032",
+      "bond_cost": 3,
+      "atk": 1100,
+      "hp": 1800,
+      "task_rating": 300,
+      "awaken_effect": {
+        "raw_text": "When this card evolves, choose 1 opposing Hoodmon; it gets -200 ATK until end of turn.",
+        "tokens": [
+          {
+            "trigger": "on_evolve",
+            "action": "modify_stat",
+            "target": "opposing_hoodmon",
+            "stat": "atk",
+            "amount": -200,
+            "duration": "end_of_turn"
+          }
+        ],
+        "trigger": "on_evolve"
+      },
+      "attacks": [
+        {
+          "attack_name": "Chain Breaker",
+          "cost": 0,
+          "base_damage": 500,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 500 damage. If the defending Hoodmon has Equipment or a continuous modifier, this attack deals 700 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 500,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "defender_has_equipment_or_continuous_modifier",
+                "replace_damage": 700
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-034",
+      "card_name": "Redline",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "SR",
+      "alignment": [
+        "Beast",
+        "Dark"
+      ],
+      "archetype_tags": [
+        "Pack Pressure",
+        "Pit Bull",
+        "Charm"
+      ],
+      "flavor_text": "Loyalty becomes armor when the pack is threatened.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-034_full.png"
+      },
+      "stage_level": 3,
+      "stage_name": "Ascended",
+      "evolves_from": "HDM-033",
+      "bond_cost": 5,
+      "atk": 2000,
+      "hp": 3200,
+      "task_rating": 500,
+      "awaken_effect": {
+        "raw_text": "When this card evolves, you may move up to 400 damage from another Hoodmon you control onto this Hoodmon, then heal 200 damage from this Hoodmon.",
+        "tokens": [
+          {
+            "trigger": "on_evolve",
+            "action": "move_damage",
+            "from": "another_your_hoodmon",
+            "to": "self",
+            "max_amount": 400
+          },
+          {
+            "action": "heal",
+            "target": "self",
+            "amount": 200
+          }
+        ],
+        "trigger": "on_evolve"
+      },
+      "attacks": [
+        {
+          "attack_name": "Collar Breaker",
+          "cost": 0,
+          "base_damage": 900,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 900 damage and ignores up to 300 points of damage reduction or prevention.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 900,
+                "target": "defending_hoodmon"
+              },
+              {
+                "action": "ignore_damage_reduction",
+                "amount": 300
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-035",
+      "card_name": "Chainjaw Pup",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "U",
+      "alignment": [
+        "Beast"
+      ],
+      "archetype_tags": [
+        "Pack Pressure",
+        "Pit Bull"
+      ],
+      "flavor_text": "Small frame. Serious grip.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-035_full.png"
+      },
+      "stage_level": 1,
+      "stage_name": "Basic",
+      "evolves_from": null,
+      "bond_cost": 1,
+      "atk": 500,
+      "hp": 700,
+      "task_rating": 100,
+      "awaken_effect": {
+        "raw_text": "When this card is played, if your opponent has more Bond than you, gain 1 Bond.",
+        "tokens": [
+          {
+            "trigger": "on_deploy",
+            "condition": "opponent_bond>your_bond",
+            "action": "gain_bond",
+            "amount": 1
+          }
+        ],
+        "trigger": "on_deploy"
+      },
+      "attacks": [
+        {
+          "attack_name": "Clamp Down",
+          "cost": 0,
+          "base_damage": 250,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 250 damage. The defending Hoodmon cannot switch until the end of its controller's next turn.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 250,
+                "target": "defending_hoodmon"
+              },
+              {
+                "action": "restrict_switch",
+                "target": "defending_hoodmon",
+                "duration": "end_of_controllers_next_turn"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-036",
+      "card_name": "Velvet Mauler",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "R",
+      "alignment": [
+        "Beast",
+        "Dark"
+      ],
+      "archetype_tags": [
+        "Pack Pressure",
+        "Pit Bull",
+        "Charm"
+      ],
+      "flavor_text": "Soft steps, hard finish.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-036_full.png"
+      },
+      "stage_level": 2,
+      "stage_name": "Evolved",
+      "evolves_from": "HDM-035",
+      "bond_cost": 3,
+      "atk": 1200,
+      "hp": 1900,
+      "task_rating": 350,
+      "awaken_effect": {
+        "raw_text": "When this card evolves, if your opponent has 4 or more cards in hand, they discard 1 card.",
+        "tokens": [
+          {
+            "trigger": "on_evolve",
+            "condition": "opponent_hand>=4",
+            "action": "discard",
+            "amount": 1,
+            "target": "opponent_hand"
+          }
+        ],
+        "trigger": "on_evolve"
+      },
+      "attacks": [
+        {
+          "attack_name": "Velvet Crush",
+          "cost": 0,
+          "base_damage": 600,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 600 damage. If your opponent has fewer cards in hand than you, it deals 800 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 600,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "opponent_hand<your_hand",
+                "replace_damage": 800
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-048",
+      "card_name": "Lil' Blush",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "C",
+      "alignment": [
+        "Fairy"
+      ],
+      "archetype_tags": [
+        "High-Class Charm",
+        "Feline",
+        "Shadow"
+      ],
+      "flavor_text": "Pretty paws find every secret first.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-048_full.png"
+      },
+      "stage_level": 1,
+      "stage_name": "Basic",
+      "evolves_from": null,
+      "bond_cost": 1,
+      "atk": 300,
+      "hp": 650,
+      "task_rating": 250,
+      "awaken_effect": {
+        "raw_text": "When this card is played, look at the top 2 cards of your Hoodmon Deck and put them back in any order.",
+        "tokens": [
+          {
+            "trigger": "on_deploy",
+            "action": "look_top",
+            "count": 2,
+            "zone": "hoodmon_deck"
+          },
+          {
+            "action": "rearrange_top",
+            "count": 2,
+            "zone": "hoodmon_deck"
+          }
+        ],
+        "trigger": "on_deploy"
+      },
+      "attacks": [
+        {
+          "attack_name": "Paw Tap",
+          "cost": 0,
+          "base_damage": 150,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 150 damage. You may look at 1 face-down Trap your opponent controls.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 150,
+                "target": "defending_hoodmon"
+              },
+              {
+                "action": "look_at_set_card",
+                "target": "opponent_trap",
+                "count": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-049",
+      "card_name": "Roseflare",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "U",
+      "alignment": [
+        "Dark",
+        "Fairy"
+      ],
+      "archetype_tags": [
+        "High-Class Charm",
+        "Feline",
+        "Shadow"
+      ],
+      "flavor_text": "By the time the shadow moves, the claws already landed.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-049_full.png"
+      },
+      "stage_level": 2,
+      "stage_name": "Evolved",
+      "evolves_from": "HDM-048",
+      "bond_cost": 3,
+      "atk": 900,
+      "hp": 1500,
+      "task_rating": 500,
+      "awaken_effect": {
+        "raw_text": "When this card evolves, you may switch it with 1 of your Reserve Hoodmon. If you do, draw 1 card, then discard 1 card.",
+        "tokens": [
+          {
+            "trigger": "on_evolve",
+            "action": "may_switch_with_reserve",
+            "target": "self"
+          },
+          {
+            "condition": "switched_by_this_effect",
+            "actions": [
+              {
+                "action": "draw",
+                "amount": 1
+              },
+              {
+                "action": "discard",
+                "amount": 1,
+                "target": "self_hand"
+              }
+            ]
+          }
+        ],
+        "trigger": "on_evolve"
+      },
+      "attacks": [
+        {
+          "attack_name": "Silent Claws",
+          "cost": 0,
+          "base_damage": 450,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 450 damage. If this Hoodmon became Active this turn, it deals 650 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 450,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "self_became_active_this_turn",
+                "replace_damage": 650
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-050",
+      "card_name": "Majestika",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "SR",
+      "alignment": [
+        "Dark",
+        "Fairy"
+      ],
+      "archetype_tags": [
+        "High-Class Charm",
+        "Feline",
+        "Shadow"
+      ],
+      "flavor_text": "Elegance is just precision with an audience.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-050_full.png"
+      },
+      "stage_level": 3,
+      "stage_name": "Ascended",
+      "evolves_from": "HDM-049",
+      "bond_cost": 5,
+      "atk": 1700,
+      "hp": 2600,
+      "task_rating": 850,
+      "awaken_effect": {
+        "raw_text": "When this card evolves, return 1 opposing face-up Continuous Magic or Equipment card to its owner's hand.",
+        "tokens": [
+          {
+            "trigger": "on_evolve",
+            "action": "return_to_hand",
+            "target": "opposing_continuous_magic_or_equipment",
+            "count": 1
+          }
+        ],
+        "trigger": "on_evolve"
+      },
+      "attacks": [
+        {
+          "attack_name": "Paw of Silk",
+          "cost": 0,
+          "base_damage": 800,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 800 damage. If this Hoodmon switched between Active and Reserve this turn, your opponent cannot activate a Trap in response to this attack.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 800,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "self_switched_this_turn",
+                "action": "restrict_response",
+                "response_type": "trap"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-064",
+      "card_name": "Mistling",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "C",
+      "alignment": [
+        "Water",
+        "Smoke"
+      ],
+      "archetype_tags": [
+        "Mist Network",
+        "Reptile",
+        "Water",
+        "Smoke"
+      ],
+      "flavor_text": "The mist shows a path if you know where to look.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-064_full.png"
+      },
+      "stage_level": 1,
+      "stage_name": "Basic",
+      "evolves_from": null,
+      "bond_cost": 1,
+      "atk": 400,
+      "hp": 800,
+      "task_rating": 200,
+      "awaken_effect": {
+        "raw_text": "When this card is played, look at the top 3 cards of your Hoodmon Deck. You may reveal 1 Water or Smoke card and put it into your hand. Put the rest on the bottom in any order.",
+        "tokens": [
+          {
+            "trigger": "on_deploy",
+            "action": "look_top",
+            "count": 3,
+            "zone": "hoodmon_deck"
+          },
+          {
+            "action": "add_to_hand",
+            "count": 1,
+            "filter": "Water OR Smoke"
+          },
+          {
+            "action": "put_rest_bottom",
+            "zone": "hoodmon_deck",
+            "order": "any"
+          }
+        ],
+        "trigger": "on_deploy"
+      },
+      "attacks": [
+        {
+          "attack_name": "Vapor Trail",
+          "cost": 0,
+          "base_damage": 200,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 200 damage. If this Hoodmon switched between Active and Reserve this turn, it deals 300 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 200,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "self_switched_this_turn",
+                "replace_damage": 300
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-065",
+      "card_name": "Vaporgeck",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "U",
+      "alignment": [
+        "Water",
+        "Smoke"
+      ],
+      "archetype_tags": [
+        "Mist Network",
+        "Reptile",
+        "Water",
+        "Smoke"
+      ],
+      "flavor_text": "It moves where the condensation points.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-065_full.png"
+      },
+      "stage_level": 2,
+      "stage_name": "Evolved",
+      "evolves_from": "HDM-064",
+      "bond_cost": 3,
+      "atk": 1000,
+      "hp": 1700,
+      "task_rating": 450,
+      "awaken_effect": {
+        "raw_text": "When this card evolves, return 1 Water or Smoke card from your Discard to your hand.",
+        "tokens": [
+          {
+            "trigger": "on_evolve",
+            "action": "return_from_discard",
+            "filter": "Water OR Smoke",
+            "destination": "hand",
+            "count": 1
+          }
+        ],
+        "trigger": "on_evolve"
+      },
+      "attacks": [
+        {
+          "attack_name": "Condensation Cut",
+          "cost": 0,
+          "base_damage": 500,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 500 damage. If you control a Field card, heal 200 damage from this Hoodmon.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 500,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "control_field",
+                "action": "heal",
+                "target": "self",
+                "amount": 200
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-066",
+      "card_name": "Nebulizard",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "SR",
+      "alignment": [
+        "Water",
+        "Smoke"
+      ],
+      "archetype_tags": [
+        "Mist Network",
+        "Reptile",
+        "Water",
+        "Smoke",
+        "Ninja"
+      ],
+      "flavor_text": "The thicker the fog, the clearer its strike.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-066_full.png"
+      },
+      "stage_level": 3,
+      "stage_name": "Ascended",
+      "evolves_from": "HDM-065",
+      "bond_cost": 5,
+      "atk": 1800,
+      "hp": 2900,
+      "task_rating": 750,
+      "awaken_effect": {
+        "raw_text": "When this card evolves, look at 1 face-down Trap your opponent controls. You may return that Trap to its owner's hand.",
+        "tokens": [
+          {
+            "trigger": "on_evolve",
+            "action": "look_at_set_card",
+            "target": "opponent_trap",
+            "count": 1
+          },
+          {
+            "action": "may_return_to_hand",
+            "target": "that_trap"
+          }
+        ],
+        "trigger": "on_evolve"
+      },
+      "attacks": [
+        {
+          "attack_name": "Mistblade Rush",
+          "cost": 0,
+          "base_damage": 850,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 850 damage. If you played a Smoke card this turn, it deals 1050 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 850,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "played_smoke_card_this_turn",
+                "replace_damage": 1050
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-069",
+      "card_name": "Spotlet",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "C",
+      "alignment": [
+        "Smoke"
+      ],
+      "archetype_tags": [
+        "Mist Network",
+        "Reptile",
+        "Smoke",
+        "Ninja"
+      ],
+      "flavor_text": "Small spots, big potential; it moves in silence.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-069_full.png"
+      },
+      "stage_level": 1,
+      "stage_name": "Basic",
+      "evolves_from": null,
+      "bond_cost": 1,
+      "atk": 300,
+      "hp": 700,
+      "task_rating": 100,
+      "awaken_effect": {
+        "trigger": "on_deploy",
+        "raw_text": "When this card is played, look at the top 3 cards of your deck. You may reveal 1 Smoke card and add it to your hand. Put the rest on the bottom of your deck in any order.",
+        "tokens": [
+          {
+            "trigger": "on_deploy",
+            "action": "look_top",
+            "count": 3,
+            "zone": "hoodmon_deck"
+          },
+          {
+            "action": "add_to_hand",
+            "count": 1,
+            "filter": "Smoke"
+          },
+          {
+            "action": "put_rest_bottom",
+            "zone": "hoodmon_deck"
+          }
+        ]
+      },
+      "attacks": [
+        {
+          "attack_name": "Quick Dash",
+          "cost": 0,
+          "base_damage": 200,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 200 damage. You may switch this Hoodmon with 1 of your Reserve Hoodmon.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 200,
+                "target": "defending_hoodmon"
+              },
+              {
+                "action": "may_switch_with_reserve",
+                "target": "self"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-073",
+      "card_name": "Tide Lurker",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "U",
+      "alignment": [
+        "Water",
+        "Nature"
+      ],
+      "archetype_tags": [
+        "Mist Network",
+        "Water",
+        "Lurker"
+      ],
+      "flavor_text": "It waits under the surface until the route is clear.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-073_full.png"
+      },
+      "stage_level": 1,
+      "stage_name": "Basic",
+      "evolves_from": null,
+      "bond_cost": 2,
+      "atk": 650,
+      "hp": 1100,
+      "task_rating": 300,
+      "awaken_effect": {
+        "raw_text": "When this card is played, if you control another Water Hoodmon, heal 200 damage from 1 of your Hoodmon.",
+        "tokens": [
+          {
+            "trigger": "on_deploy",
+            "condition": "control_another_water_hoodmon",
+            "action": "heal",
+            "target": "your_hoodmon",
+            "amount": 200
+          }
+        ],
+        "trigger": "on_deploy"
+      },
+      "attacks": [
+        {
+          "attack_name": "Undertow Lunge",
+          "cost": 0,
+          "base_damage": 350,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 350 damage. You may move this Hoodmon to Reserve after the attack resolves.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 350,
+                "target": "defending_hoodmon"
+              },
+              {
+                "action": "may_move_to_reserve",
+                "target": "self",
+                "timing": "after_attack"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-079",
+      "card_name": "Kitklaws",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "C",
+      "alignment": [
+        "Beast"
+      ],
+      "archetype_tags": [
+        "Truth Network",
+        "Feline",
+        "Tech"
+      ],
+      "flavor_text": "Curiosity is the first tool in the kit.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-079_full.png"
+      },
+      "stage_level": 1,
+      "stage_name": "Basic",
+      "evolves_from": null,
+      "bond_cost": 1,
+      "atk": 300,
+      "hp": 650,
+      "task_rating": 300,
+      "awaken_effect": {
+        "raw_text": "When this card is played, look at the top 3 cards of your Hoodmon Deck. You may reveal 1 Magic or Trap card and put it into your hand. Put the rest on the bottom in any order.",
+        "tokens": [
+          {
+            "trigger": "on_deploy",
+            "action": "look_top",
+            "count": 3,
+            "zone": "hoodmon_deck"
+          },
+          {
+            "action": "add_to_hand",
+            "count": 1,
+            "filter": "Magic OR Trap"
+          },
+          {
+            "action": "put_rest_bottom",
+            "zone": "hoodmon_deck",
+            "order": "any"
+          }
+        ],
+        "trigger": "on_deploy"
+      },
+      "attacks": [
+        {
+          "attack_name": "Data Scratch",
+          "cost": 0,
+          "base_damage": 150,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 150 damage. If you looked at or revealed a card from a deck this turn, draw 1 card, then discard 1 card.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 150,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "looked_at_or_revealed_card_this_turn",
+                "actions": [
+                  {
+                    "action": "draw",
+                    "amount": 1
+                  },
+                  {
+                    "action": "discard",
+                    "amount": 1,
+                    "target": "self_hand"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-080",
+      "card_name": "Scratchwiser",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "U",
+      "alignment": [
+        "Beast",
+        "Psychic"
+      ],
+      "archetype_tags": [
+        "Truth Network",
+        "Feline",
+        "Tech"
+      ],
+      "flavor_text": "Patterns become obvious once it knows where to scratch.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-080_full.png"
+      },
+      "stage_level": 2,
+      "stage_name": "Evolved",
+      "evolves_from": "HDM-079",
+      "bond_cost": 3,
+      "atk": 800,
+      "hp": 1400,
+      "task_rating": 550,
+      "awaken_effect": {
+        "raw_text": "When this card evolves, look at the top 3 cards of your opponent's Hoodmon Deck and put them back in any order.",
+        "tokens": [
+          {
+            "trigger": "on_evolve",
+            "action": "look_top",
+            "count": 3,
+            "zone": "opponent_hoodmon_deck"
+          },
+          {
+            "action": "rearrange_top",
+            "count": 3,
+            "zone": "opponent_hoodmon_deck"
+          }
+        ],
+        "trigger": "on_evolve"
+      },
+      "attacks": [
+        {
+          "attack_name": "Pattern Claw",
+          "cost": 0,
+          "base_damage": 400,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 400 damage. If you looked at or revealed a card from your opponent's deck this turn, it deals 600 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 400,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "looked_at_or_revealed_opponent_deck_this_turn",
+                "replace_damage": 600
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-081",
+      "card_name": "Calicore",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "SR",
+      "alignment": [
+        "Psychic"
+      ],
+      "archetype_tags": [
+        "Truth Network",
+        "Feline",
+        "Tech"
+      ],
+      "flavor_text": "Truth is easier to defend when you can see the lie forming.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-081_full.png"
+      },
+      "stage_level": 3,
+      "stage_name": "Ascended",
+      "evolves_from": "HDM-080",
+      "bond_cost": 5,
+      "atk": 1500,
+      "hp": 2400,
+      "task_rating": 850,
+      "awaken_effect": {
+        "raw_text": "When this card evolves, look at the top 3 cards of either Hoodmon Deck and put them back in any order. Then draw 1 card.",
+        "tokens": [
+          {
+            "trigger": "on_evolve",
+            "action": "look_top",
+            "count": 3,
+            "zone": "either_hoodmon_deck"
+          },
+          {
+            "action": "rearrange_top",
+            "count": 3,
+            "zone": "same_deck"
+          },
+          {
+            "action": "draw",
+            "amount": 1
+          }
+        ],
+        "trigger": "on_evolve"
+      },
+      "attacks": [
+        {
+          "attack_name": "Truth Pulse",
+          "cost": 0,
+          "base_damage": 750,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 750 damage. If your opponent controls a Field, Continuous Magic, or Equipment card, it deals 950 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 750,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "opponent_controls_persistent_support",
+                "replace_damage": 950
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-082",
+      "card_name": "Monical",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "UR",
+      "alignment": [
+        "Psychic",
+        "Light"
+      ],
+      "archetype_tags": [
+        "Truth Network",
+        "Feline",
+        "Tech",
+        "Oracle"
+      ],
+      "flavor_text": "Past, present, and possibility all leave fingerprints.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-082_full.png"
+      },
+      "stage_level": 4,
+      "stage_name": "Transcended",
+      "evolves_from": "HDM-081",
+      "bond_cost": 6,
+      "atk": 2400,
+      "hp": 3800,
+      "task_rating": 1100,
+      "awaken_effect": {
+        "raw_text": "When this card evolves, look at your opponent's hand. Choose 1 non-Hoodmon card; that card cannot be played until the end of your opponent's next turn.",
+        "tokens": [
+          {
+            "trigger": "on_evolve",
+            "action": "look_at_hand",
+            "target": "opponent"
+          },
+          {
+            "action": "choose_card",
+            "filter": "non-Hoodmon",
+            "from": "opponent_hand",
+            "count": 1
+          },
+          {
+            "action": "restrict_play",
+            "target": "chosen_card",
+            "duration": "end_of_opponents_next_turn"
+          }
+        ],
+        "trigger": "on_evolve"
+      },
+      "attacks": [
+        {
+          "attack_name": "Oracle Verdict",
+          "cost": 0,
+          "base_damage": 1200,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 1200 damage. If you looked at or revealed an opponent's card this turn, it deals 1500 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 1200,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "looked_at_or_revealed_opponent_card_this_turn",
+                "replace_damage": 1500
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-087",
+      "card_name": "Ember Hatchling",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "C",
+      "alignment": [
+        "Fire"
+      ],
+      "archetype_tags": [
+        "Dual Flame Bond",
+        "Bearded Dragon",
+        "Reptile",
+        "Bright Flame"
+      ],
+      "flavor_text": "Small sparks. Bigger fire.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-087_full.png"
+      },
+      "stage_level": 1,
+      "stage_name": "Basic",
+      "evolves_from": null,
+      "bond_cost": 1,
+      "atk": 300,
+      "hp": 600,
+      "task_rating": 100,
+      "awaken_effect": {
+        "trigger": "on_deploy",
+        "raw_text": "If you have another Bearded Dragon in your Reserve, draw 1 card, then discard 1 card.",
+        "tokens": [
+          {
+            "trigger": "on_deploy",
+            "condition": "another_bearded_dragon_in_reserve",
+            "actions": [
+              {
+                "action": "draw",
+                "amount": 1
+              },
+              {
+                "action": "discard",
+                "amount": 1,
+                "target": "self_hand"
+              }
+            ]
+          }
+        ]
+      },
+      "attacks": [
+        {
+          "attack_name": "Ember Snap",
+          "cost": 0,
+          "base_damage": 200,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 200 damage. If you have 2 or more Bearded Dragons in your Reserve, this attack deals 300 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 200,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "reserve_bearded_dragons>=2",
+                "replace_damage": 300
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-088",
+      "card_name": "Smoldering Beard",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "U",
+      "alignment": [
+        "Fire"
+      ],
+      "archetype_tags": [
+        "Dual Flame Bond",
+        "Bearded Dragon",
+        "Reptile",
+        "Bright Flame"
+      ],
+      "flavor_text": "The beard burns brighter when the den stands together.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-088_full.png"
+      },
+      "stage_level": 2,
+      "stage_name": "Evolved",
+      "evolves_from": "HDM-087",
+      "bond_cost": 3,
+      "atk": 950,
+      "hp": 1700,
+      "task_rating": 350,
+      "awaken_effect": {
+        "raw_text": "When this card evolves, if you have another Bearded Dragon in Reserve, gain 1 Bond.",
+        "tokens": [
+          {
+            "trigger": "on_evolve",
+            "condition": "another_bearded_dragon_in_reserve",
+            "action": "gain_bond",
+            "amount": 1
+          }
+        ],
+        "trigger": "on_evolve"
+      },
+      "attacks": [
+        {
+          "attack_name": "Smolder Bite",
+          "cost": 0,
+          "base_damage": 450,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 450 damage. If you have 2 or more Bearded Dragons in Reserve, it deals 600 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 450,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "reserve_bearded_dragons>=2",
+                "replace_damage": 600
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-089",
+      "card_name": "Ashen Warden",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "SR",
+      "alignment": [
+        "Fire",
+        "Dragon"
+      ],
+      "archetype_tags": [
+        "Dual Flame Bond",
+        "Bearded Dragon",
+        "Reptile",
+        "Bright Flame",
+        "Dragon"
+      ],
+      "flavor_text": "It stands between the den and anything foolish enough to threaten it.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-089_full.png"
+      },
+      "stage_level": 3,
+      "stage_name": "Ascended",
+      "evolves_from": "HDM-088",
+      "bond_cost": 5,
+      "atk": 1900,
+      "hp": 3100,
+      "task_rating": 600,
+      "awaken_effect": {
+        "raw_text": "When this card evolves, heal 300 damage from each Bearded Dragon Hoodmon you control.",
+        "tokens": [
+          {
+            "trigger": "on_evolve",
+            "action": "heal",
+            "target": "each_your_bearded_dragon",
+            "amount": 300
+          }
+        ],
+        "trigger": "on_evolve"
+      },
+      "attacks": [
+        {
+          "attack_name": "Warden Flame",
+          "cost": 0,
+          "base_damage": 900,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 900 damage. If you have 2 or more Bearded Dragons in Reserve, it deals 1100 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 900,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "reserve_bearded_dragons>=2",
+                "replace_damage": 1100
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-090",
+      "card_name": "Shadow Hatchling",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "C",
+      "alignment": [
+        "Dark",
+        "Fire"
+      ],
+      "archetype_tags": [
+        "Dual Flame Bond",
+        "Bearded Dragon",
+        "Reptile",
+        "Shadow Ember",
+        "Igniscale"
+      ],
+      "flavor_text": "The ember is quiet because the shadow is listening.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-090_full.png"
+      },
+      "stage_level": 1,
+      "stage_name": "Basic",
+      "evolves_from": null,
+      "bond_cost": 1,
+      "atk": 350,
+      "hp": 650,
+      "task_rating": 150,
+      "awaken_effect": {
+        "raw_text": "When this card is played, look at the top 2 cards of your Hoodmon Deck and put them back in any order.",
+        "tokens": [
+          {
+            "trigger": "on_deploy",
+            "action": "look_top",
+            "count": 2,
+            "zone": "hoodmon_deck"
+          },
+          {
+            "action": "rearrange_top",
+            "count": 2,
+            "zone": "hoodmon_deck"
+          }
+        ],
+        "trigger": "on_deploy"
+      },
+      "attacks": [
+        {
+          "attack_name": "Shadow Spark",
+          "cost": 0,
+          "base_damage": 200,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 200 damage. You may switch this Hoodmon with 1 of your Reserve Hoodmon after the attack resolves.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 200,
+                "target": "defending_hoodmon"
+              },
+              {
+                "action": "may_switch_with_reserve",
+                "target": "self",
+                "timing": "after_attack"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-091",
+      "card_name": "Duskwyrm",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "R",
+      "alignment": [
+        "Dark",
+        "Fire"
+      ],
+      "archetype_tags": [
+        "Dual Flame Bond",
+        "Bearded Dragon",
+        "Reptile",
+        "Shadow Ember",
+        "Igniscale"
+      ],
+      "flavor_text": "It learns every alley by the darkness between the lights.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-091_full.png"
+      },
+      "stage_level": 2,
+      "stage_name": "Evolved",
+      "evolves_from": "HDM-090",
+      "bond_cost": 3,
+      "atk": 1050,
+      "hp": 1650,
+      "task_rating": 400,
+      "awaken_effect": {
+        "raw_text": "When this card evolves, you may banish 1 card from your Discard. If you do, gain 1 Bond.",
+        "tokens": [
+          {
+            "trigger": "on_evolve",
+            "optional_cost": {
+              "action": "banish",
+              "target": "your_discard",
+              "count": 1
+            },
+            "action": "gain_bond",
+            "amount": 1
+          }
+        ],
+        "trigger": "on_evolve"
+      },
+      "attacks": [
+        {
+          "attack_name": "Dusk Talon",
+          "cost": 0,
+          "base_damage": 550,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 550 damage. If your opponent played a Magic or Trap card this turn, it deals 750 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 550,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "opponent_played_magic_or_trap_this_turn",
+                "replace_damage": 750
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-092",
+      "card_name": "Abyss Igniscale",
+      "card_type": "hoodmon",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "SR",
+      "alignment": [
+        "Dark",
+        "Fire"
+      ],
+      "archetype_tags": [
+        "Dual Flame Bond",
+        "Bearded Dragon",
+        "Reptile",
+        "Shadow Ember",
+        "Igniscale"
+      ],
+      "flavor_text": "Abyss-fire doesn't shine. It swallows the light around it.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-092_full.png"
+      },
+      "stage_level": 3,
+      "stage_name": "Ascended",
+      "evolves_from": "HDM-091",
+      "bond_cost": 5,
+      "atk": 2100,
+      "hp": 3000,
+      "task_rating": 650,
+      "awaken_effect": {
+        "raw_text": "When this card evolves, choose 1 opposing Hoodmon; it gets -300 ATK and cannot switch between Active and Reserve until the end of your opponent's next turn.",
+        "tokens": [
+          {
+            "trigger": "on_evolve",
+            "action": "modify_stat",
+            "target": "opposing_hoodmon",
+            "stat": "atk",
+            "amount": -300,
+            "duration": "end_of_opponents_next_turn"
+          },
+          {
+            "action": "restrict_switch",
+            "target": "same_opposing_hoodmon",
+            "duration": "end_of_opponents_next_turn"
+          }
+        ],
+        "trigger": "on_evolve"
+      },
+      "attacks": [
+        {
+          "attack_name": "Eclipse Bite",
+          "cost": 0,
+          "base_damage": 1000,
+          "uses_atk_in_formula": false,
+          "effect": {
+            "raw_text": "This attack deals 1000 damage. If you have 5 or more Bond after declaring this attack, it deals 1200 damage instead.",
+            "tokens": [
+              {
+                "action": "damage",
+                "amount": 1000,
+                "target": "defending_hoodmon"
+              },
+              {
+                "condition": "bond>=5",
+                "replace_damage": 1200
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "card_series_id": "HDM-022",
+      "card_name": "Same Block, Different Generation",
+      "card_type": "magic",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "U",
+      "alignment": [
+        "Wind"
+      ],
+      "archetype_tags": [
+        "Bird-Tech Block",
+        "Bird",
+        "Tech"
+      ],
+      "flavor_text": "Old eyes, new signal.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-022_full.png"
+      },
+      "magic_subtype": "Standard",
+      "resource_cost": 1,
+      "occupies_zone_persistently": false,
+      "reaction_window_eligible": false,
+      "effect": {
+        "raw_text": "Choose 1 Wind Hoodmon in your Discard and 1 Wind Hoodmon you control. Return the card from your Discard to your hand, then the Hoodmon you control gains +100 TASK until end of turn.",
+        "tokens": [
+          {
+            "action": "return_from_discard",
+            "filter": "Wind Hoodmon",
+            "destination": "hand",
+            "count": 1
+          },
+          {
+            "action": "modify_stat",
+            "target": "your_wind_hoodmon",
+            "stat": "task_rating",
+            "amount": 100,
+            "duration": "end_of_turn"
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-024",
+      "card_name": "Bird's-Eye Backdoor",
+      "card_type": "magic",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "R",
+      "alignment": [
+        "Psychic"
+      ],
+      "archetype_tags": [
+        "Bird-Tech Block",
+        "Tech"
+      ],
+      "flavor_text": "The cleanest door is the one nobody sees.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-024_full.png"
+      },
+      "magic_subtype": "Quick",
+      "resource_cost": 1,
+      "occupies_zone_persistently": false,
+      "reaction_window_eligible": true,
+      "effect": {
+        "raw_text": "Look at the top 3 cards of either Hoodmon Deck and put them back in any order. If you control a Bird Hoodmon, you may instead put 1 of those cards on the bottom of that deck.",
+        "tokens": [
+          {
+            "action": "look_top",
+            "count": 3,
+            "zone": "either_hoodmon_deck"
+          },
+          {
+            "action": "rearrange_top",
+            "count": 3,
+            "zone": "same_deck"
+          },
+          {
+            "condition": "control_bird_hoodmon",
+            "action": "may_put_one_bottom",
+            "zone": "same_deck"
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-025",
+      "card_name": "Good Neighbors Share Passwords",
+      "card_type": "magic",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "U",
+      "alignment": [
+        "Wind"
+      ],
+      "archetype_tags": [
+        "Bird-Tech Block",
+        "Tech"
+      ],
+      "flavor_text": "Around here, the password is community.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-025_full.png"
+      },
+      "magic_subtype": "Standard",
+      "resource_cost": 1,
+      "occupies_zone_persistently": false,
+      "reaction_window_eligible": false,
+      "effect": {
+        "raw_text": "If you control a Tech card, draw 2 cards, then discard 1 card. If you also control a Wind Hoodmon, gain 1 Bond.",
+        "tokens": [
+          {
+            "condition": "control_tech_card",
+            "actions": [
+              {
+                "action": "draw",
+                "amount": 2
+              },
+              {
+                "action": "discard",
+                "amount": 1,
+                "target": "self_hand"
+              }
+            ]
+          },
+          {
+            "condition": "control_tech_card_and_wind_hoodmon",
+            "action": "gain_bond",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-061",
+      "card_name": "Leaked Evidence",
+      "card_type": "magic",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "SP",
+      "alignment": [
+        "Dark"
+      ],
+      "archetype_tags": [
+        "Truth Network",
+        "Tech"
+      ],
+      "flavor_text": "Truth leaks louder than bullets.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-061_full.png"
+      },
+      "magic_subtype": "Standard",
+      "resource_cost": 2,
+      "occupies_zone_persistently": false,
+      "reaction_window_eligible": false,
+      "effect": {
+        "raw_text": "Search your Hoodmon Deck for 1 Trap or Magic card, reveal it, put it into your hand, then shuffle your Hoodmon Deck. Then look at the top 2 cards of either Hoodmon Deck and put them back in any order. If Capin MDH is your Tamer, draw 1 card.",
+        "tokens": [
+          {
+            "action": "search_deck",
+            "zone": "hoodmon_deck",
+            "count": 1,
+            "filter": "Trap OR Magic",
+            "destination": "hand",
+            "then": "shuffle"
+          },
+          {
+            "action": "look_top",
+            "count": 2,
+            "zone": "either_hoodmon_deck"
+          },
+          {
+            "action": "rearrange_top",
+            "count": 2,
+            "zone": "same_deck"
+          },
+          {
+            "condition": "tamer_is_capin_mdh",
+            "action": "draw",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-070",
+      "card_name": "Mist Map",
+      "card_type": "magic",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "U",
+      "alignment": [
+        "Water"
+      ],
+      "archetype_tags": [
+        "Mist Network",
+        "Water",
+        "Smoke"
+      ],
+      "flavor_text": "Fog isn't confusion if you drew the map.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-070_full.png"
+      },
+      "magic_subtype": "Standard",
+      "resource_cost": 1,
+      "occupies_zone_persistently": false,
+      "reaction_window_eligible": false,
+      "effect": {
+        "raw_text": "Look at the top 4 cards of your Hoodmon Deck. Reveal 1 Water or Smoke card and put it into your hand. Put the rest on the bottom in any order.",
+        "tokens": [
+          {
+            "action": "look_top",
+            "count": 4,
+            "zone": "hoodmon_deck"
+          },
+          {
+            "action": "add_to_hand",
+            "count": 1,
+            "filter": "Water OR Smoke"
+          },
+          {
+            "action": "put_rest_bottom",
+            "zone": "hoodmon_deck",
+            "order": "any"
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-071",
+      "card_name": "Rooted Condensation",
+      "card_type": "magic",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "R",
+      "alignment": [
+        "Water",
+        "Nature"
+      ],
+      "archetype_tags": [
+        "Mist Network"
+      ],
+      "flavor_text": "Water settles where roots give it somewhere to stay.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-071_full.png"
+      },
+      "magic_subtype": "Continuous",
+      "resource_cost": 2,
+      "occupies_zone_persistently": true,
+      "reaction_window_eligible": false,
+      "effect": {
+        "raw_text": "Your Water and Smoke Hoodmon gain +100 TASK. The first time each turn one of your Water or Smoke Hoodmon completes a Task, heal 200 damage from it.",
+        "tokens": [
+          {
+            "action": "modify_stat",
+            "target": "your_water_or_smoke_hoodmon",
+            "stat": "task_rating",
+            "amount": 100,
+            "duration": "while_face_up"
+          },
+          {
+            "trigger": "first_each_turn",
+            "condition": "your_water_or_smoke_hoodmon_completes_task",
+            "action": "heal",
+            "target": "that_hoodmon",
+            "amount": 200
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-072",
+      "card_name": "Smoke Screen Slip",
+      "card_type": "magic",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "R",
+      "alignment": [
+        "Smoke"
+      ],
+      "archetype_tags": [
+        "Mist Network"
+      ],
+      "flavor_text": "A clean escape is just another route through the haze.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-072_full.png"
+      },
+      "magic_subtype": "Quick",
+      "resource_cost": 1,
+      "occupies_zone_persistently": false,
+      "reaction_window_eligible": true,
+      "effect": {
+        "raw_text": "When one of your Hoodmon is targeted by an attack or opposing effect, switch it with 1 of your Reserve Hoodmon. The new Active Hoodmon takes 200 less damage from that attack this turn.",
+        "tokens": [
+          {
+            "trigger": "on_targeted_by_attack_or_effect",
+            "action": "switch_active_with_reserve",
+            "target": "your_hoodmon"
+          },
+          {
+            "action": "modify_damage_taken",
+            "target": "new_active_hoodmon",
+            "amount": -200,
+            "duration": "this_attack"
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-074",
+      "card_name": "Water Finds Another Way",
+      "card_type": "magic",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "U",
+      "alignment": [
+        "Water"
+      ],
+      "archetype_tags": [
+        "Mist Network"
+      ],
+      "flavor_text": "The route changes. The current doesn't stop.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-074_full.png"
+      },
+      "magic_subtype": "Standard",
+      "resource_cost": 1,
+      "occupies_zone_persistently": false,
+      "reaction_window_eligible": false,
+      "effect": {
+        "raw_text": "Return 1 Water Hoodmon from your Discard to your hand. If you control a Smoke Hoodmon, you may also heal 200 damage from 1 Hoodmon you control.",
+        "tokens": [
+          {
+            "action": "return_from_discard",
+            "filter": "Water Hoodmon",
+            "destination": "hand",
+            "count": 1
+          },
+          {
+            "condition": "control_smoke_hoodmon",
+            "action": "heal",
+            "target": "your_hoodmon",
+            "amount": 200
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-075",
+      "card_name": "Smoke Makes Connections",
+      "card_type": "magic",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "U",
+      "alignment": [
+        "Smoke"
+      ],
+      "archetype_tags": [
+        "Mist Network"
+      ],
+      "flavor_text": "Every trail of smoke connects two places.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-075_full.png"
+      },
+      "magic_subtype": "Standard",
+      "resource_cost": 1,
+      "occupies_zone_persistently": false,
+      "reaction_window_eligible": false,
+      "effect": {
+        "raw_text": "Look at the top 4 cards of your Hoodmon Deck. You may reveal 1 Smoke card, 1 Water card, or your Tamer's archetype card and put it into your hand. Put the rest on the bottom in any order.",
+        "tokens": [
+          {
+            "action": "look_top",
+            "count": 4,
+            "zone": "hoodmon_deck"
+          },
+          {
+            "action": "add_to_hand",
+            "count": 1,
+            "filter": "Smoke OR Water OR matches_tamer_archetype"
+          },
+          {
+            "action": "put_rest_bottom",
+            "zone": "hoodmon_deck",
+            "order": "any"
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-084",
+      "card_name": "Data Over Fear",
+      "card_type": "magic",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "R",
+      "alignment": [
+        "Psychic"
+      ],
+      "archetype_tags": [
+        "Truth Network",
+        "Tech"
+      ],
+      "flavor_text": "Facts hit harder when the room expected fear.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-084_full.png"
+      },
+      "magic_subtype": "Quick",
+      "resource_cost": 1,
+      "occupies_zone_persistently": false,
+      "reaction_window_eligible": true,
+      "effect": {
+        "raw_text": "Look at the top 2 cards of your opponent's Hoodmon Deck. Put them back in any order. Then choose 1 of your Hoodmon; it gains +200 TASK until end of turn. If Capin MDH is your Tamer, draw 1 card, then discard 1 card.",
+        "tokens": [
+          {
+            "action": "look_top",
+            "count": 2,
+            "zone": "opponent_hoodmon_deck"
+          },
+          {
+            "action": "rearrange_top",
+            "count": 2,
+            "zone": "opponent_hoodmon_deck"
+          },
+          {
+            "action": "modify_stat",
+            "target": "your_hoodmon",
+            "stat": "task_rating",
+            "amount": 200,
+            "duration": "end_of_turn"
+          },
+          {
+            "condition": "tamer_is_capin_mdh",
+            "actions": [
+              {
+                "action": "draw",
+                "amount": 1
+              },
+              {
+                "action": "discard",
+                "amount": 1,
+                "target": "self_hand"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-094",
+      "card_name": "Street Sweetheat Pact",
+      "card_type": "magic",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "U",
+      "alignment": [
+        "Fire",
+        "Beast"
+      ],
+      "archetype_tags": [
+        "Dual Flame Bond",
+        "Pack Pressure"
+      ],
+      "flavor_text": "Heat travels faster when the whole block moves together.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-094_full.png"
+      },
+      "magic_subtype": "Standard",
+      "resource_cost": 1,
+      "occupies_zone_persistently": false,
+      "reaction_window_eligible": false,
+      "effect": {
+        "raw_text": "Choose 1 Fire Hoodmon and 1 Beast Hoodmon you control. Each gains +100 ATK until end of turn. If one of them is in Reserve, you may switch it with your Active Hoodmon.",
+        "tokens": [
+          {
+            "action": "modify_stat",
+            "target": "your_fire_hoodmon",
+            "stat": "atk",
+            "amount": 100,
+            "duration": "end_of_turn"
+          },
+          {
+            "action": "modify_stat",
+            "target": "your_beast_hoodmon",
+            "stat": "atk",
+            "amount": 100,
+            "duration": "end_of_turn"
+          },
+          {
+            "condition": "one_chosen_in_reserve",
+            "action": "may_switch_active_with_chosen_reserve"
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-097",
+      "card_name": "Peaches Heat Sync",
+      "card_type": "magic",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "R",
+      "alignment": [
+        "Fire"
+      ],
+      "archetype_tags": [
+        "Dual Flame Bond",
+        "Pack Pressure",
+        "Peaches"
+      ],
+      "flavor_text": "Old chemistry still burns.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-097_full.png"
+      },
+      "magic_subtype": "Quick",
+      "resource_cost": 1,
+      "occupies_zone_persistently": false,
+      "reaction_window_eligible": true,
+      "effect": {
+        "raw_text": "Choose 1 Fire Hoodmon you control and 1 Beast/Dark Hoodmon you control. Until end of turn, each gains +200 ATK. If Peaches is your Tamer, gain 1 Bond.",
+        "tokens": [
+          {
+            "action": "modify_stat",
+            "target": "your_fire_hoodmon",
+            "stat": "atk",
+            "amount": 200,
+            "duration": "end_of_turn"
+          },
+          {
+            "action": "modify_stat",
+            "target": "your_beast_dark_hoodmon",
+            "stat": "atk",
+            "amount": 200,
+            "duration": "end_of_turn"
+          },
+          {
+            "condition": "tamer_is_peaches",
+            "action": "gain_bond",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-098",
+      "card_name": "Shadowfire Exchange",
+      "card_type": "magic",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "SR",
+      "alignment": [
+        "Dark",
+        "Fire"
+      ],
+      "archetype_tags": [
+        "Dual Flame Bond",
+        "Shadow Ember",
+        "Bright Flame"
+      ],
+      "flavor_text": "Two flames trade places without ever leaving the den.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-098_full.png"
+      },
+      "magic_subtype": "Quick",
+      "resource_cost": 2,
+      "occupies_zone_persistently": false,
+      "reaction_window_eligible": true,
+      "effect": {
+        "raw_text": "Switch your Active Igniscale-line Hoodmon with 1 Igniscale-line Hoodmon in your Reserve. Move up to 300 damage from the new Active Hoodmon to the Hoodmon moved to Reserve.",
+        "tokens": [
+          {
+            "action": "switch_active_with_reserve",
+            "filter": "Igniscale-line"
+          },
+          {
+            "action": "move_damage",
+            "from": "new_active_hoodmon",
+            "to": "hoodmon_moved_to_reserve",
+            "max_amount": 300
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-101",
+      "card_name": "Bond Beyond the Veil",
+      "card_type": "magic",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "SR",
+      "alignment": [
+        "Dark",
+        "Fire"
+      ],
+      "archetype_tags": [
+        "Dual Flame Bond",
+        "Igniscale"
+      ],
+      "flavor_text": "Some bonds survive the place where rules stop.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-101_full.png"
+      },
+      "magic_subtype": "Continuous",
+      "resource_cost": 2,
+      "occupies_zone_persistently": true,
+      "reaction_window_eligible": false,
+      "effect": {
+        "raw_text": "The first time each turn one of your Bearded Dragon Hoodmon evolves, gain 1 Bond. Your Igniscale-line Hoodmon gain +100 TASK while this card is face-up.",
+        "tokens": [
+          {
+            "trigger": "first_each_turn",
+            "condition": "your_bearded_dragon_evolves",
+            "action": "gain_bond",
+            "amount": 1
+          },
+          {
+            "action": "modify_stat",
+            "target": "your_igniscale_line_hoodmon",
+            "stat": "task_rating",
+            "amount": 100,
+            "duration": "while_face_up"
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-102",
+      "card_name": "Dual Line Awakening",
+      "card_type": "magic",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "SCR",
+      "alignment": [
+        "Fire",
+        "Dark"
+      ],
+      "archetype_tags": [
+        "Dual Flame Bond",
+        "Igniscale",
+        "Capstone"
+      ],
+      "flavor_text": "Different paths. Same blood. One awakening.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-102_full.png"
+      },
+      "magic_subtype": "Standard",
+      "resource_cost": 3,
+      "occupies_zone_persistently": false,
+      "reaction_window_eligible": false,
+      "effect": {
+        "raw_text": "Choose 1 Igniscale-line Hoodmon you control. You may evolve it into a legal next-stage Bright Flame or Shadow Ember form from your hand by paying 2 less Bond than its printed Bond Cost, to a minimum of 1. Then heal 300 damage from the evolved Hoodmon.",
+        "tokens": [
+          {
+            "action": "allow_evolution",
+            "target": "your_igniscale_line_hoodmon",
+            "branches": [
+              "Bright Flame",
+              "Shadow Ember"
+            ],
+            "source": "hand",
+            "bond_cost_reduction": 2,
+            "minimum_cost": 1
+          },
+          {
+            "action": "heal",
+            "target": "evolved_hoodmon",
+            "amount": 300
+          }
+        ]
+      }
+    },
+    {
+      "card_series_id": "HDM-026",
+      "card_name": "Don't Touch That Camera",
+      "card_type": "trap",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "U",
+      "alignment": [
+        "Wind"
+      ],
+      "flavor_text": "Some cameras are worth protecting.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-026_full.png"
+      },
+      "trigger_condition": "On Attack Declared",
+      "activation_cost": 0,
+      "effect": {
+        "raw_text": "When an opponent declares an attack while you control a Bird Hoodmon, switch your Active Hoodmon with 1 Reserve Bird Hoodmon. The attacking Hoodmon gets -100 ATK until end of turn.",
+        "tokens": [
+          {
+            "trigger": "on_attack_declared",
+            "condition": "control_bird_hoodmon",
+            "action": "switch_active_with_reserve",
+            "filter": "Bird"
+          },
+          {
+            "action": "modify_stat",
+            "target": "attacking_hoodmon",
+            "stat": "atk",
+            "amount": -100,
+            "duration": "end_of_turn"
+          }
+        ]
+      },
+      "archetype_tags": [
+        "Bird-Tech Block",
+        "Tech"
+      ]
+    },
+    {
+      "card_series_id": "HDM-027",
+      "card_name": "Pigeon-Grade Cybersecurity",
+      "card_type": "trap",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "R",
+      "alignment": [
+        "Psychic"
+      ],
+      "flavor_text": "Cheap hardware. Mean firewall.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-027_full.png"
+      },
+      "trigger_condition": "Custom: When an opponent targets one of your Tech or Bird cards with an effect",
+      "activation_cost": 0,
+      "effect": {
+        "raw_text": "Negate that effect. Then look at the top 2 cards of your opponent's Hoodmon Deck and put them back in any order.",
+        "tokens": [
+          {
+            "trigger": "on_opponent_targets_your_tech_or_bird_with_effect",
+            "action": "negate_effect"
+          },
+          {
+            "action": "look_top",
+            "count": 2,
+            "zone": "opponent_hoodmon_deck"
+          },
+          {
+            "action": "rearrange_top",
+            "count": 2,
+            "zone": "opponent_hoodmon_deck"
+          }
+        ]
+      },
+      "archetype_tags": [
+        "Bird-Tech Block",
+        "Tech"
+      ]
+    },
+    {
+      "card_series_id": "HDM-037",
+      "card_name": "Bad Idea, Babe",
+      "card_type": "trap",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "U",
+      "alignment": [
+        "Dark"
+      ],
+      "flavor_text": "You knew better before you swung.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-037_full.png"
+      },
+      "trigger_condition": "On Attack Declared",
+      "activation_cost": 0,
+      "effect": {
+        "raw_text": "When an opponent declares an attack, that attacking Hoodmon gets -300 ATK until end of turn. If you control Peaches, you may switch your Active Hoodmon with 1 Reserve Beast Hoodmon.",
+        "tokens": [
+          {
+            "trigger": "on_attack_declared",
+            "action": "modify_stat",
+            "target": "attacking_hoodmon",
+            "stat": "atk",
+            "amount": -300,
+            "duration": "end_of_turn"
+          },
+          {
+            "condition": "control_peaches",
+            "action": "may_switch_active_with_reserve",
+            "filter": "Beast"
+          }
+        ]
+      },
+      "archetype_tags": [
+        "Pack Pressure",
+        "Charm"
+      ]
+    },
+    {
+      "card_series_id": "HDM-038",
+      "card_name": "Chain Break Counter",
+      "card_type": "trap",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "R",
+      "alignment": [
+        "Beast"
+      ],
+      "flavor_text": "Pull the chain and find out who was holding who.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-038_full.png"
+      },
+      "trigger_condition": "On Attack Declared",
+      "activation_cost": 0,
+      "effect": {
+        "raw_text": "When one of your Beast Hoodmon is attacked, it gains +300 ATK until end of turn. After the attack resolves, if it is still in play, heal 200 damage from it.",
+        "tokens": [
+          {
+            "trigger": "on_your_beast_attacked",
+            "action": "modify_stat",
+            "target": "attacked_beast",
+            "stat": "atk",
+            "amount": 300,
+            "duration": "end_of_turn"
+          },
+          {
+            "timing": "after_attack",
+            "condition": "attacked_beast_still_in_play",
+            "action": "heal",
+            "target": "attacked_beast",
+            "amount": 200
+          }
+        ]
+      },
+      "archetype_tags": [
+        "Pack Pressure",
+        "Pit Bull"
+      ]
+    },
+    {
+      "card_series_id": "HDM-077",
+      "card_name": "What You Don't See... Obeys",
+      "card_type": "trap",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "R",
+      "alignment": [
+        "Smoke"
+      ],
+      "flavor_text": "The mist doesn't hide the move. It chooses who sees it.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-077_full.png"
+      },
+      "trigger_condition": "On Attack Declared",
+      "activation_cost": 0,
+      "effect": {
+        "raw_text": "When an opponent declares an attack, switch your Active Water or Smoke Hoodmon with 1 Reserve Water or Smoke Hoodmon. Reduce that attack's damage by 200.",
+        "tokens": [
+          {
+            "trigger": "on_attack_declared",
+            "action": "switch_active_with_reserve",
+            "filter": "Water OR Smoke"
+          },
+          {
+            "action": "modify_attack_damage",
+            "amount": -200,
+            "duration": "this_attack"
+          }
+        ]
+      },
+      "archetype_tags": [
+        "Mist Network"
+      ]
+    },
+    {
+      "card_series_id": "HDM-093",
+      "card_name": "Pit & Flame Tag-In",
+      "card_type": "trap",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "R",
+      "alignment": [
+        "Fire",
+        "Beast"
+      ],
+      "flavor_text": "One steps out, the other brings the heat.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-093_full.png"
+      },
+      "trigger_condition": "On Attack Declared",
+      "activation_cost": 0,
+      "effect": {
+        "raw_text": "When one of your Hoodmon is attacked, you may switch it with 1 Reserve Fire or Beast Hoodmon. The new Active Hoodmon gains +200 ATK until end of turn.",
+        "tokens": [
+          {
+            "trigger": "on_your_hoodmon_attacked",
+            "action": "may_switch_active_with_reserve",
+            "filter": "Fire OR Beast"
+          },
+          {
+            "action": "modify_stat",
+            "target": "new_active_hoodmon",
+            "stat": "atk",
+            "amount": 200,
+            "duration": "end_of_turn"
+          }
+        ]
+      },
+      "archetype_tags": [
+        "Dual Flame Bond",
+        "Pack Pressure"
+      ]
+    },
+    {
+      "card_series_id": "HDM-096",
+      "card_name": "Split Flame Reversal",
+      "card_type": "trap",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "SR",
+      "alignment": [
+        "Fire",
+        "Dark"
+      ],
+      "flavor_text": "Bright to shadow. Shadow to bright. Same blood, different answer.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-096_full.png"
+      },
+      "trigger_condition": "On Evolution",
+      "activation_cost": 1,
+      "effect": {
+        "raw_text": "When one of your Igniscale-line Hoodmon evolves, choose 1 opposing Hoodmon; it gets -200 ATK until end of turn. Then you may switch the evolved Hoodmon with 1 Reserve Igniscale-line Hoodmon.",
+        "tokens": [
+          {
+            "trigger": "on_your_igniscale_evolves",
+            "action": "modify_stat",
+            "target": "opposing_hoodmon",
+            "stat": "atk",
+            "amount": -200,
+            "duration": "end_of_turn"
+          },
+          {
+            "action": "may_switch_active_with_reserve",
+            "filter": "Igniscale-line"
+          }
+        ]
+      },
+      "archetype_tags": [
+        "Dual Flame Bond",
+        "Igniscale"
+      ]
+    },
+    {
+      "card_series_id": "HDM-099",
+      "card_name": "Peaches' Backup Bite",
+      "card_type": "trap",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "R",
+      "alignment": [
+        "Beast",
+        "Fire"
+      ],
+      "flavor_text": "Backup still has teeth.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-099_full.png"
+      },
+      "trigger_condition": "On Attack Declared",
+      "activation_cost": 0,
+      "effect": {
+        "raw_text": "When your Active Fire Hoodmon is attacked, you may switch it with 1 Reserve Beast Hoodmon. If Peaches is your Tamer, heal 200 damage from the new Active Hoodmon.",
+        "tokens": [
+          {
+            "trigger": "on_your_active_fire_attacked",
+            "action": "may_switch_active_with_reserve",
+            "filter": "Beast"
+          },
+          {
+            "condition": "tamer_is_peaches",
+            "action": "heal",
+            "target": "new_active_hoodmon",
+            "amount": 200
+          }
+        ]
+      },
+      "archetype_tags": [
+        "Pack Pressure",
+        "Dual Flame Bond",
+        "Peaches"
+      ]
+    },
+    {
+      "card_series_id": "HDM-023",
+      "card_name": "Neighborhood Wi-Fi",
+      "card_type": "field",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "R",
+      "alignment": [
+        "Wind"
+      ],
+      "flavor_text": "Everybody on the block is connected to something.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-023_full.png"
+      },
+      "affects_scope": "Controller Only",
+      "bond_cost": 2,
+      "effect": {
+        "raw_text": "Your Wind Hoodmon gain +100 TASK. Once per turn, after you look at or reveal a card from a deck, you may draw 1 card, then discard 1 card.",
+        "tokens": [
+          {
+            "action": "modify_stat",
+            "target": "your_wind_hoodmon",
+            "stat": "task_rating",
+            "amount": 100,
+            "duration": "while_face_up"
+          },
+          {
+            "trigger": "once_per_turn",
+            "condition": "you_look_at_or_reveal_card_from_deck",
+            "actions": [
+              {
+                "action": "draw",
+                "amount": 1
+              },
+              {
+                "action": "discard",
+                "amount": 1,
+                "target": "self_hand"
+              }
+            ]
+          }
+        ]
+      },
+      "archetype_tags": [
+        "Bird-Tech Block",
+        "Tech"
+      ]
+    },
+    {
+      "card_series_id": "HDM-039",
+      "card_name": "Velvet Block Kennel",
+      "card_type": "field",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "R",
+      "alignment": [
+        "Beast",
+        "Dark"
+      ],
+      "flavor_text": "Soft walls. Hard rules.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-039_full.png"
+      },
+      "affects_scope": "Controller Only",
+      "bond_cost": 2,
+      "effect": {
+        "raw_text": "Your Beast Hoodmon gain +100 ATK. The first time each turn one of your Beast Hoodmon moves from Reserve to Active, heal 200 damage from it.",
+        "tokens": [
+          {
+            "action": "modify_stat",
+            "target": "your_beast_hoodmon",
+            "stat": "atk",
+            "amount": 100,
+            "duration": "while_face_up"
+          },
+          {
+            "trigger": "first_each_turn",
+            "condition": "your_beast_moves_reserve_to_active",
+            "action": "heal",
+            "target": "that_hoodmon",
+            "amount": 200
+          }
+        ]
+      },
+      "archetype_tags": [
+        "Pack Pressure",
+        "Pit Bull"
+      ]
+    },
+    {
+      "card_series_id": "HDM-083",
+      "card_name": "Hoodmon Truth Network",
+      "card_type": "field",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "SR",
+      "alignment": [
+        "Psychic"
+      ],
+      "flavor_text": "The truth doesn't need permission to go live.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-083_full.png"
+      },
+      "affects_scope": "Both Players",
+      "bond_cost": 2,
+      "effect": {
+        "raw_text": "The top card of each Hoodmon Deck is revealed while this Field is face-up. Your Psychic Hoodmon gain +100 TASK. Once per turn, when a revealed top card changes, you may gain 1 Bond.",
+        "tokens": [
+          {
+            "action": "reveal_top_continuous",
+            "target": "both_hoodmon_decks",
+            "duration": "while_face_up"
+          },
+          {
+            "action": "modify_stat",
+            "target": "your_psychic_hoodmon",
+            "stat": "task_rating",
+            "amount": 100,
+            "duration": "while_face_up"
+          },
+          {
+            "trigger": "once_per_turn",
+            "condition": "revealed_top_card_changes",
+            "action": "gain_bond",
+            "amount": 1
+          }
+        ]
+      },
+      "archetype_tags": [
+        "Truth Network",
+        "Tech"
+      ]
+    },
+    {
+      "card_series_id": "HDM-100",
+      "card_name": "Blockfire Kennel",
+      "card_type": "field",
+      "deck_target": "Hoodmon Deck",
+      "max_copies": 3,
+      "rarity": "SR",
+      "alignment": [
+        "Fire",
+        "Beast"
+      ],
+      "flavor_text": "One kennel, two bloodlines, no weak links.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-100_full.png"
+      },
+      "affects_scope": "Controller Only",
+      "bond_cost": 2,
+      "effect": {
+        "raw_text": "Your Fire and Beast Hoodmon gain +100 HP for each Reserve Hoodmon you control. The first time each turn you switch a Fire or Beast Hoodmon into the Active position, it gains +100 ATK until end of turn.",
+        "tokens": [
+          {
+            "action": "modify_stat_per",
+            "target": "your_fire_or_beast_hoodmon",
+            "stat": "hp",
+            "amount": 100,
+            "per": "your_reserve_hoodmon",
+            "duration": "while_face_up"
+          },
+          {
+            "trigger": "first_each_turn",
+            "condition": "your_fire_or_beast_moves_to_active",
+            "action": "modify_stat",
+            "target": "that_hoodmon",
+            "stat": "atk",
+            "amount": 100,
+            "duration": "end_of_turn"
+          }
+        ]
+      },
+      "archetype_tags": [
+        "Dual Flame Bond",
+        "Pack Pressure",
+        "Bearded Dragon"
+      ]
+    },
+    {
+      "card_series_id": "HDM-T-001",
+      "card_name": "Check on the Block",
+      "card_type": "task",
+      "deck_target": "Task Deck",
+      "max_copies": 1,
+      "rarity": "C",
+      "flavor_text": "Know the block before the block knows you.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-t-001_full.png"
+      },
+      "task_tier": "Street",
+      "task_difficulty": 300,
+      "attemptable_by": "Either Player",
+      "reward": {
+        "raw_text": "Gain 1 Bond.",
+        "tokens": [
+          {
+            "action": "gain_bond",
+            "amount": 1
+          }
+        ]
+      },
+      "failure": {
+        "raw_text": null,
+        "tokens": []
+      },
+      "alignment": [],
+      "archetype_tags": [
+        "Bird-Tech Block",
+        "Bird",
+        "Tech"
+      ]
+    },
+    {
+      "card_series_id": "HDM-T-002",
+      "card_name": "Everybody Eats",
+      "card_type": "task",
+      "deck_target": "Task Deck",
+      "max_copies": 1,
+      "rarity": "C",
+      "flavor_text": "Nobody wins if the whole block is starving.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-t-002_full.png"
+      },
+      "task_tier": "Street",
+      "task_difficulty": 350,
+      "attemptable_by": "Either Player",
+      "reward": {
+        "raw_text": "Draw 1 card, then heal 100 damage from 1 Hoodmon you control.",
+        "tokens": [
+          {
+            "action": "draw",
+            "amount": 1
+          },
+          {
+            "action": "heal",
+            "target": "your_hoodmon",
+            "amount": 100
+          }
+        ]
+      },
+      "failure": {
+        "raw_text": null,
+        "tokens": []
+      },
+      "alignment": [],
+      "archetype_tags": [
+        "Bird-Tech Block",
+        "Community"
+      ]
+    },
+    {
+      "card_series_id": "HDM-T-003",
+      "card_name": "Crash Their Feed",
+      "card_type": "task",
+      "deck_target": "Task Deck",
+      "max_copies": 1,
+      "rarity": "SR",
+      "flavor_text": "If the feed goes down, somebody loses control of the story.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-t-003_full.png"
+      },
+      "task_tier": "Crisis",
+      "task_difficulty": 800,
+      "attemptable_by": "Either Player",
+      "reward": {
+        "raw_text": "Gain 2 Bond and draw 1 card.",
+        "tokens": [
+          {
+            "action": "gain_bond",
+            "amount": 2
+          },
+          {
+            "action": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "failure": {
+        "raw_text": "Your opponent looks at the top 2 cards of your Hoodmon Deck and puts them back in any order.",
+        "tokens": [
+          {
+            "action": "look_top",
+            "actor": "opponent",
+            "count": 2,
+            "zone": "your_hoodmon_deck"
+          },
+          {
+            "action": "rearrange_top",
+            "actor": "opponent",
+            "count": 2,
+            "zone": "your_hoodmon_deck"
+          }
+        ]
+      },
+      "alignment": [],
+      "archetype_tags": [
+        "Bird-Tech Block",
+        "Tech"
+      ]
+    },
+    {
+      "card_series_id": "HDM-T-004",
+      "card_name": "Cash In When It Counts",
+      "card_type": "task",
+      "deck_target": "Task Deck",
+      "max_copies": 1,
+      "rarity": "R",
+      "flavor_text": "Pressure only matters if you know when to collect.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-t-004_full.png"
+      },
+      "task_tier": "Major",
+      "task_difficulty": 650,
+      "attemptable_by": "Either Player",
+      "reward": {
+        "raw_text": "Draw 2 cards, then discard 1 card.",
+        "tokens": [
+          {
+            "action": "draw",
+            "amount": 2
+          },
+          {
+            "action": "discard",
+            "amount": 1,
+            "target": "self_hand"
+          }
+        ]
+      },
+      "failure": {
+        "raw_text": null,
+        "tokens": []
+      },
+      "alignment": [],
+      "archetype_tags": [
+        "Pack Pressure",
+        "Charm"
+      ]
+    },
+    {
+      "card_series_id": "HDM-T-005",
+      "card_name": "Dewdrop Objective",
+      "card_type": "task",
+      "deck_target": "Task Deck",
+      "max_copies": 1,
+      "rarity": "C",
+      "flavor_text": "Small water tells big stories.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-t-005_full.png"
+      },
+      "task_tier": "Street",
+      "task_difficulty": 300,
+      "attemptable_by": "Either Player",
+      "reward": {
+        "raw_text": "Heal 300 damage from 1 Water or Smoke Hoodmon you control.",
+        "tokens": [
+          {
+            "action": "heal",
+            "target": "your_water_or_smoke_hoodmon",
+            "amount": 300
+          }
+        ]
+      },
+      "failure": {
+        "raw_text": null,
+        "tokens": []
+      },
+      "alignment": [],
+      "archetype_tags": [
+        "Mist Network",
+        "Water"
+      ]
+    },
+    {
+      "card_series_id": "HDM-T-006",
+      "card_name": "Vapor Cache",
+      "card_type": "task",
+      "deck_target": "Task Deck",
+      "max_copies": 1,
+      "rarity": "R",
+      "flavor_text": "The mist leaves supplies where only patient eyes find them.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-t-006_full.png"
+      },
+      "task_tier": "Major",
+      "task_difficulty": 600,
+      "attemptable_by": "Either Player",
+      "reward": {
+        "raw_text": "Return 1 Water or Smoke card from your Discard to your hand, then gain 1 Bond.",
+        "tokens": [
+          {
+            "action": "return_from_discard",
+            "filter": "Water OR Smoke",
+            "destination": "hand",
+            "count": 1
+          },
+          {
+            "action": "gain_bond",
+            "amount": 1
+          }
+        ]
+      },
+      "failure": {
+        "raw_text": null,
+        "tokens": []
+      },
+      "alignment": [],
+      "archetype_tags": [
+        "Mist Network",
+        "Water",
+        "Smoke"
+      ]
+    },
+    {
+      "card_series_id": "HDM-T-007",
+      "card_name": "Tiny Creatures, Bigger Moves",
+      "card_type": "task",
+      "deck_target": "Task Deck",
+      "max_copies": 1,
+      "rarity": "R",
+      "flavor_text": "Size never decided who gets the last move.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-t-007_full.png"
+      },
+      "task_tier": "Major",
+      "task_difficulty": 700,
+      "attemptable_by": "Either Player",
+      "reward": {
+        "raw_text": "Gain 1 Bond. Then ready 1 Basic Hoodmon you control; it cannot attempt another Task this turn.",
+        "tokens": [
+          {
+            "action": "gain_bond",
+            "amount": 1
+          },
+          {
+            "action": "ready",
+            "target": "your_basic_hoodmon"
+          },
+          {
+            "restriction": "target_cannot_attempt_another_task_this_turn"
+          }
+        ]
+      },
+      "failure": {
+        "raw_text": null,
+        "tokens": []
+      },
+      "alignment": [],
+      "archetype_tags": [
+        "Mist Network",
+        "Small Hoodmon"
+      ]
+    },
+    {
+      "card_series_id": "HDM-T-008",
+      "card_name": "Research, Record, Reveal!",
+      "card_type": "task",
+      "deck_target": "Task Deck",
+      "max_copies": 1,
+      "rarity": "SR",
+      "flavor_text": "Evidence becomes power when somebody records it before it disappears.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-t-008_full.png"
+      },
+      "task_tier": "Crisis",
+      "task_difficulty": 850,
+      "attemptable_by": "Either Player",
+      "reward": {
+        "raw_text": "Look at the top 5 cards of either Hoodmon Deck and put them back in any order. Then draw 1 card.",
+        "tokens": [
+          {
+            "action": "look_top",
+            "count": 5,
+            "zone": "either_hoodmon_deck"
+          },
+          {
+            "action": "rearrange_top",
+            "count": 5,
+            "zone": "same_deck"
+          },
+          {
+            "action": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "failure": {
+        "raw_text": "Reveal your hand to your opponent.",
+        "tokens": [
+          {
+            "action": "reveal_hand",
+            "target": "self",
+            "viewer": "opponent"
+          }
+        ]
+      },
+      "alignment": [],
+      "archetype_tags": [
+        "Truth Network",
+        "Tech"
+      ]
+    },
+    {
+      "card_series_id": "HDM-T-009",
+      "card_name": "Reserve Roll Call",
+      "card_type": "task",
+      "deck_target": "Task Deck",
+      "max_copies": 1,
+      "rarity": "U",
+      "flavor_text": "A full Reserve is a promise that the fight isn't over.",
+      "art": {
+        "full_res_url": "/assets/cards/hdm-t-009_full.png"
+      },
+      "task_tier": "Street",
+      "task_difficulty": 400,
+      "attemptable_by": "Either Player",
+      "reward": {
+        "raw_text": "Gain 1 Bond, then heal 200 damage from 1 Reserve Hoodmon you control.",
+        "tokens": [
+          {
+            "action": "gain_bond",
+            "amount": 1
+          },
+          {
+            "action": "heal",
+            "target": "your_reserve_hoodmon",
+            "amount": 200
+          }
+        ]
+      },
+      "failure": {
+        "raw_text": null,
+        "tokens": []
+      },
+      "alignment": [],
+      "archetype_tags": [
+        "Dual Flame Bond",
+        "Reserve"
+      ]
+    }
+  ]
+}
