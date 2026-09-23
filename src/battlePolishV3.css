@@ -1,0 +1,303 @@
+/* HOODMON battle polish v3 — visual/interaction only. Core rules remain untouched. */
+
+/* One-screen battle composition on desktop. */
+.battle-page {
+  padding-top: 4px !important;
+  padding-bottom: 176px !important;
+}
+.battle-page .battle-home-heading {
+  display: none !important;
+}
+.battle-page .arena-mode-switch {
+  min-height: 28px;
+  margin-bottom: 4px !important;
+  padding: 3px 5px !important;
+}
+.battle-page .arena-mode-switch button {
+  padding: 4px 8px !important;
+  font-size: 7px !important;
+}
+
+.app-shell {
+  --hud-width: clamp(210px, 17vw, 260px) !important;
+  column-gap: 6px !important;
+  row-gap: 4px !important;
+  padding: 6px !important;
+}
+.battle-topbar {
+  min-height: 38px !important;
+  padding: 4px 8px !important;
+}
+.battle-topbar .crown { font-size: 21px !important; }
+.battle-topbar .brand h2 { font-size: 17px !important; }
+.battle-topbar .brand small { font-size: 6px !important; }
+.match-meta span { padding: 3px 5px !important; font-size: 6px !important; }
+.phase-bar { gap: 3px !important; }
+.phase-pill { padding: 4px 2px !important; font-size: 7px !important; }
+
+/* True face-to-face geometry: both fields use the same physical row heights,
+   while playerFieldMirror.css controls the reflected vertical order. */
+.player-panel {
+  padding: 5px !important;
+  border-radius: 7px !important;
+}
+.player-header {
+  min-height: 28px;
+  gap: 5px !important;
+}
+.player-header strong { font-size: 9px !important; }
+.stat-row { gap: 3px !important; }
+.stat-row span { padding: 3px 5px !important; font-size: 6px !important; }
+.stat-row b { font-size: 9px !important; }
+.zone-row,
+.hoodmon-row,
+.task-row { gap: 4px !important; }
+
+/* Support cards sit on the outer edge of each reflected field. */
+.zone {
+  min-height: 58px !important;
+  padding: 4px !important;
+}
+.support-zone { padding-top: 13px !important; }
+.support-card-art { width: 34px !important; max-height: 51px !important; }
+.trap-card-back { width: 34px !important; }
+.tamer-zone img { width: 31px !important; margin-bottom: 1px !important; }
+.tamer-zone small,
+.support-zone small { font-size: 6px !important; }
+.zone-name { top: 2px !important; font-size: 5px !important; }
+
+/* Active Hoodmon is the visual anchor; Reserves stay compact. */
+.hoodmon-slot.active-card,
+.player-panel.opponent .hoodmon-slot.active-card {
+  min-height: 122px !important;
+  border-width: 2px !important;
+  border-color: rgba(255,151,68,.82) !important;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(255,133,49,.10), transparent 43%),
+    rgba(4,13,16,.84) !important;
+  box-shadow:
+    inset 0 0 28px rgba(255,128,40,.065),
+    0 0 14px rgba(255,128,40,.09) !important;
+}
+.hoodmon-slot.reserve-card,
+.player-panel.opponent .hoodmon-slot.reserve-card {
+  min-height: 104px !important;
+}
+.hoodmon-slot.active-card .battle-card-art,
+.player-panel.opponent .hoodmon-slot.active-card .battle-card-art {
+  width: 82px !important;
+  flex-basis: 82px !important;
+}
+.hoodmon-slot.reserve-card .battle-card-art,
+.player-panel.opponent .hoodmon-slot.reserve-card .battle-card-art {
+  width: 66px !important;
+  flex-basis: 66px !important;
+}
+.hoodmon-slot.active-card strong { font-size: 12px !important; }
+.hoodmon-slot.reserve-card strong { font-size: 10px !important; }
+.hoodmon-slot small,
+.hoodmon-statline small { font-size: 6px !important; }
+.hoodmon-statline { gap: 3px !important; }
+.hoodmon-statline small { padding: 2px 4px !important; }
+.readiness-badge { font-size: 5px !important; padding: 2px 4px !important; }
+.health-track { height: 4px !important; margin: 4px 0 3px !important; }
+
+/* Task progress is a slim race line between Hoodmons and Tasks. */
+.task-race-strip {
+  min-height: 11px !important;
+  height: 11px;
+  margin-top: 3px !important;
+  padding: 1px 3px !important;
+}
+.task-race-track { height: 3px !important; }
+.task-race-strip > b { font-size: 6px !important; }
+.player-panel.opponent .task-race-track i {
+  background: linear-gradient(90deg, #ff39c7, #ff8cdd) !important;
+  box-shadow: 0 0 8px rgba(255,57,199,.36);
+}
+
+/* Let the Task cards dominate their row; deck/discard information becomes badges. */
+.task-row {
+  display: flex !important;
+  align-items: stretch !important;
+  min-height: 36px;
+  overflow: visible !important;
+}
+.task-row > .eyebrow { display: none !important; }
+.task-slot {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  min-height: 36px !important;
+  padding: 4px 5px !important;
+}
+.task-slot b { font-size: 7px !important; }
+.task-slot small {
+  font-size: 5.5px !important;
+  line-height: 1.15;
+  max-height: 2.3em;
+  overflow: hidden;
+}
+.deck-count {
+  flex: 0 0 52px !important;
+  min-width: 52px !important;
+  min-height: 36px !important;
+  padding: 4px 3px !important;
+  border-radius: 999px !important;
+  align-self: center;
+  font-size: 5px !important;
+  line-height: 1.05;
+}
+.deck-count b { display: block; margin: 2px 0 0 !important; font-size: 8px !important; }
+.truth-network-reveal { flex-basis: 68px !important; min-width: 68px !important; }
+
+/* The center line is only a separator between the two inward-facing status rows. */
+.center-mark {
+  min-height: 18px !important;
+  height: 18px;
+  margin: 0 !important;
+  border-radius: 999px !important;
+}
+.center-mark span { font-size: 5.5px !important; letter-spacing: .22em !important; }
+
+/* Phase progression stays dominant; Reset stays intentionally quiet. */
+.inline-turn-controls { gap: 3px !important; margin-inline: 2px !important; }
+.inline-turn-advance {
+  min-width: 96px;
+  min-height: 25px !important;
+  padding: 5px 9px !important;
+  transition: filter .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+.inline-turn-advance:not(:disabled):hover { transform: translateY(-1px); }
+.inline-turn-controls[data-phase="refresh"] .inline-turn-advance,
+.inline-turn-controls[data-phase="draw"] .inline-turn-advance { background: #86dfff; border-color: #bceeff; color: #03141c; }
+.inline-turn-controls[data-phase="bond"] .inline-turn-advance { background: #55f6d2; border-color: #8affdf; color: #042019; }
+.inline-turn-controls[data-phase="main"] .inline-turn-advance { background: #ffd85c; border-color: #ffe99b; color: #201700; }
+.inline-turn-controls[data-phase="command"] .inline-turn-advance { background: #ff965c; border-color: #ffc09b; color: #231008; box-shadow: 0 0 16px rgba(255,120,61,.20); }
+.inline-turn-controls[data-phase="end"] .inline-turn-advance { background: #d79cff; border-color: #eccaff; color: #17081f; }
+.inline-turn-reset {
+  min-height: 20px !important;
+  padding: 4px 6px !important;
+  border-color: rgba(188,109,109,.25) !important;
+  background: rgba(37,12,15,.50) !important;
+  color: #a97b80 !important;
+  font-size: 5.5px !important;
+  box-shadow: none !important;
+}
+.inline-turn-reset:hover { color: #ffd0d0 !important; border-color: rgba(255,145,145,.55) !important; }
+
+/* Context-sensitive side HUD: actions first, prose second. */
+.app-shell > .turn-console .turn-guidance {
+  padding: 5px 7px !important;
+}
+.app-shell > .turn-console .turn-guidance strong {
+  font-size: 7px !important;
+  line-height: 1.2 !important;
+  max-height: 2.4em;
+  overflow: hidden;
+}
+.app-shell > .turn-console .turn-guidance small,
+.app-shell > .turn-console .drag-play-guidance small {
+  display: none !important;
+}
+.app-shell > .turn-console .controls { padding: 5px !important; gap: 4px !important; }
+.app-shell > .turn-console .action-group { padding: 5px !important; gap: 3px !important; }
+.app-shell > .turn-console .action-group-title { font-size: 5.5px !important; }
+.app-shell > .turn-console .controls button { min-height: 28px !important; padding: 5px 6px !important; }
+.app-shell > .event-log {
+  max-height: 112px !important;
+  padding: 6px !important;
+}
+.app-shell > .event-log h3 { margin: -6px -6px 4px !important; padding: 6px !important; }
+.app-shell > .event-log div { padding: 2px 0 !important; }
+.app-shell > .event-log div:nth-of-type(n+6) { display: none; }
+
+/* Legal-action focus. Selecting a playable hand card quiets everything except valid drops. */
+.app-shell:has(.hand-card.selected.play-enabled) .player-panel:not(.opponent) .zone:not(.valid-drop),
+.app-shell:has(.hand-card.selected.play-enabled) .player-panel:not(.opponent) .hoodmon-slot:not(.valid-drop) {
+  opacity: .35;
+  filter: saturate(.48) brightness(.76);
+  transition: opacity .15s ease, filter .15s ease;
+}
+.app-shell:has(.hand-card.selected.play-enabled) .player-panel:not(.opponent) .valid-drop {
+  opacity: 1 !important;
+  filter: brightness(1.14) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 2px rgba(85,246,210,.50), inset 0 0 28px rgba(85,246,210,.13), 0 0 26px rgba(85,246,210,.24) !important;
+}
+
+/* Legal Command choices read immediately. */
+.app-shell[data-phase="command"] .attack-action:not(:disabled),
+.app-shell[data-phase="command"] .task-command-grid button:not(:disabled) {
+  box-shadow: 0 0 0 1px rgba(255,216,92,.32), 0 0 18px rgba(255,216,92,.12) !important;
+  filter: brightness(1.08);
+}
+.app-shell[data-phase="command"] .attack-action:disabled,
+.app-shell[data-phase="command"] .task-command-grid button:disabled {
+  opacity: .20 !important;
+  filter: grayscale(.55);
+}
+
+/* Exact attack vector injected by battlePolish.ts. */
+#hoodmon-attack-vector {
+  position: fixed;
+  inset: 0;
+  z-index: 214;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  overflow: visible;
+  filter: drop-shadow(0 0 8px rgba(82,225,255,.48));
+}
+#hoodmon-attack-vector .attack-vector-line {
+  stroke: #75e9ff;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 12 9;
+  animation: attackVectorDash .32s linear infinite;
+}
+#hoodmon-attack-vector[data-attacker="p2"] .attack-vector-line { stroke: #ff79d9; }
+#hoodmon-attack-vector .attack-vector-source { fill: #75e9ff; }
+#hoodmon-attack-vector .attack-vector-target { fill: #ff725f; stroke: white; stroke-width: 2; }
+@keyframes attackVectorDash { to { stroke-dashoffset: -21; } }
+
+/* Keep hand close to Player 1's outer support row without consuming more board height. */
+.battle-hand-shell { bottom: 28px !important; }
+.battle-hand-fan { min-height: 150px !important; padding-top: 15px !important; }
+
+@media (min-width: 1181px) and (min-height: 820px) {
+  .app-shell > .player-panel { max-height: 270px; }
+}
+
+@media (max-width: 1180px) {
+  .battle-page .battle-home-heading { display: none !important; }
+  .app-shell > .event-log { max-height: 72px !important; }
+}
+
+@media (max-width: 900px) {
+  .battle-page { padding-bottom: 158px !important; }
+  .task-row { overflow-x: auto !important; overflow-y: hidden !important; }
+  .task-slot { flex: 0 0 150px !important; }
+  .deck-count { flex: 0 0 48px !important; min-width: 48px !important; }
+  .battle-hand-shell { bottom: 12px !important; }
+  .battle-hand-fan { min-height: 136px !important; padding-top: 12px !important; }
+}
+
+@media (max-width: 600px) {
+  .battle-page { padding-bottom: 142px !important; }
+  .arena-mode-switch { display: none !important; }
+  .app-shell { padding: 4px !important; row-gap: 3px !important; }
+  .battle-topbar { min-height: 34px !important; }
+  .player-panel { padding: 4px !important; }
+  .hoodmon-slot.active-card,
+  .player-panel.opponent .hoodmon-slot.active-card { min-height: 114px !important; }
+  .hoodmon-slot.reserve-card,
+  .player-panel.opponent .hoodmon-slot.reserve-card { min-height: 98px !important; }
+  .inline-turn-controls { width: auto !important; order: initial !important; }
+  .inline-turn-advance { min-width: 84px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #hoodmon-attack-vector .attack-vector-line { animation: none; }
+  .inline-turn-advance,
+  .valid-drop { transition: none !important; }
+}
