@@ -1,0 +1,253 @@
+/* HOODMON overlap recovery layer.
+   Keeps the v3 visual improvements, but removes height/spacing rules that
+   caused cards, status controls, and the hand to collide. */
+
+/* Prefer a slightly taller board that stays readable over forced one-screen compression. */
+.battle-page {
+  padding-bottom: 196px !important;
+}
+
+.app-shell {
+  column-gap: 9px !important;
+  row-gap: 7px !important;
+  padding: 8px !important;
+}
+
+/* Never clip a player field to an artificial height. */
+.app-shell > .player-panel,
+.player-panel {
+  max-height: none !important;
+  height: auto !important;
+  overflow: visible !important;
+  padding: 7px !important;
+}
+
+/* Status rows get enough room for LP/Bond/turn controls/Tasks/Hand without collision. */
+.player-header {
+  min-height: 34px !important;
+  gap: 7px !important;
+  flex-wrap: wrap !important;
+}
+.player-header > div:first-child {
+  flex: 0 0 auto;
+}
+.stat-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end;
+  flex-wrap: wrap !important;
+  gap: 4px !important;
+  min-width: 0;
+}
+.stat-row span {
+  padding: 4px 6px !important;
+  font-size: 6.5px !important;
+}
+.stat-row b {
+  font-size: 9px !important;
+}
+.inline-turn-controls {
+  flex: 0 0 auto !important;
+  margin: 0 3px !important;
+}
+.inline-turn-advance {
+  min-width: 96px !important;
+}
+
+/* Restore safe physical heights for support cards. */
+.zone-row,
+.hoodmon-row,
+.task-row {
+  gap: 5px !important;
+}
+.zone {
+  min-height: 68px !important;
+  height: auto !important;
+  overflow: hidden;
+}
+.support-card-art {
+  width: 38px !important;
+  max-height: 57px !important;
+}
+.trap-card-back {
+  width: 38px !important;
+}
+.tamer-zone img {
+  width: 35px !important;
+}
+
+/* Hoodmon rows must contain their art, stats, and status chips completely. */
+.hoodmon-slot,
+.hoodmon-slot.active-card,
+.player-panel.opponent .hoodmon-slot.active-card {
+  min-height: 138px !important;
+  height: auto !important;
+  overflow: hidden;
+}
+.hoodmon-slot.reserve-card,
+.player-panel.opponent .hoodmon-slot.reserve-card {
+  min-height: 116px !important;
+}
+.hoodmon-slot.active-card .battle-card-art,
+.player-panel.opponent .hoodmon-slot.active-card .battle-card-art {
+  width: 90px !important;
+  flex-basis: 90px !important;
+}
+.hoodmon-slot.reserve-card .battle-card-art,
+.player-panel.opponent .hoodmon-slot.reserve-card .battle-card-art {
+  width: 72px !important;
+  flex-basis: 72px !important;
+}
+.battle-card-copy {
+  min-width: 0;
+  overflow: hidden;
+}
+.hoodmon-slot-heading,
+.hoodmon-statline,
+.battle-status-row {
+  flex-wrap: wrap !important;
+}
+
+/* Give the progress strip its own real row rather than forcing content into 11px. */
+.task-race-strip {
+  min-height: 16px !important;
+  height: auto !important;
+  padding: 2px 4px !important;
+  overflow: hidden;
+}
+.task-race-track {
+  min-width: 40px;
+}
+
+/* Task cards stay prominent; deck/discard badges no longer crush the row. */
+.task-row {
+  min-height: 46px !important;
+  height: auto !important;
+  display: flex !important;
+  align-items: stretch !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  padding-bottom: 2px;
+}
+.task-slot {
+  flex: 1 1 125px !important;
+  min-width: 118px !important;
+  min-height: 44px !important;
+  height: auto !important;
+  overflow: hidden;
+}
+.task-slot small {
+  max-height: none !important;
+}
+.deck-count {
+  flex: 0 0 58px !important;
+  min-width: 58px !important;
+  min-height: 44px !important;
+  height: auto !important;
+  border-radius: 7px !important;
+}
+.truth-network-reveal {
+  flex-basis: 76px !important;
+  min-width: 76px !important;
+}
+
+/* Keep the side HUD inside its own grid cell. */
+.app-shell > .turn-console,
+.app-shell > .setup-panel,
+.app-shell > .event-log {
+  min-width: 0 !important;
+  max-width: 100%;
+  overflow: hidden;
+}
+.app-shell > .turn-console .controls,
+.app-shell > .turn-console .action-group {
+  min-width: 0;
+}
+.app-shell > .turn-console .controls button {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* The hand should never sit on top of Player 1's support row. */
+.battle-hand-shell {
+  bottom: 0 !important;
+}
+.battle-hand-fan {
+  min-height: 158px !important;
+  padding-top: 18px !important;
+  padding-bottom: 2px !important;
+}
+
+/* Board card inspector stays away from the command rail and hand. */
+.board-card-inspector {
+  max-height: min(68vh, 560px) !important;
+  overflow: auto !important;
+}
+
+@media (max-width: 1180px) {
+  .battle-page {
+    padding-bottom: 184px !important;
+  }
+  .app-shell {
+    row-gap: 6px !important;
+  }
+  .player-panel {
+    overflow: visible !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .battle-page {
+    padding-bottom: 172px !important;
+  }
+  .player-header {
+    align-items: flex-start !important;
+  }
+  .stat-row {
+    width: 100% !important;
+    justify-content: flex-start !important;
+  }
+  .inline-turn-controls {
+    width: auto !important;
+    order: initial !important;
+  }
+  .task-row {
+    padding-bottom: 4px !important;
+  }
+  .task-slot {
+    flex: 0 0 152px !important;
+    min-width: 152px !important;
+  }
+  .battle-hand-shell {
+    bottom: 0 !important;
+  }
+  .battle-hand-fan {
+    min-height: 146px !important;
+    padding-top: 14px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .battle-page {
+    padding-bottom: 154px !important;
+  }
+  .app-shell {
+    padding: 5px !important;
+    row-gap: 5px !important;
+  }
+  .player-panel {
+    padding: 5px !important;
+  }
+  .hoodmon-slot.active-card,
+  .player-panel.opponent .hoodmon-slot.active-card {
+    min-height: 126px !important;
+  }
+  .hoodmon-slot.reserve-card,
+  .player-panel.opponent .hoodmon-slot.reserve-card {
+    min-height: 108px !important;
+  }
+  .inline-turn-advance {
+    min-width: 82px !important;
+  }
+}
