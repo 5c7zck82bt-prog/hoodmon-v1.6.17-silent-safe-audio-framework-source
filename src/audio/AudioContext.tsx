@@ -110,7 +110,11 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     setCurrentMusicCue(null)
   }, [])
 
-  const startMusic = useCallback((cue: AudioCue) => {
+  const startMusic = useCallback((cue: AudioCue | null) => {
+    if (cue === null) {
+      stopMusic()
+      return
+    }
     desiredMusicRef.current = cue
     const asset = AUDIO_REGISTRY[cue]
     if (asset.category !== 'music') return
@@ -131,7 +135,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     audio.volume = Math.min(1, channelVolume(settingsRef.current, 'music') * (asset.baseVolume ?? 1))
     musicRef.current = audio
     if (audioUnlocked && audio.volume > 0 && document.visibilityState !== 'hidden') void audio.play().catch(() => {})
-  }, [audioUnlocked])
+  }, [audioUnlocked, stopMusic])
 
   const playCue = useCallback((cue: AudioCue) => {
     const asset = AUDIO_REGISTRY[cue]
