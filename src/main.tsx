@@ -9,6 +9,7 @@ import './battleLayoutV2.css'
 import './playerFieldMirror.css'
 import './inlineTurnControls.css'
 import './inlineTurnControls'
+import './bottomBattleHud.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
