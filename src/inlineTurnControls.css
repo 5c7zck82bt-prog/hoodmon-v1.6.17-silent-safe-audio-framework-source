@@ -1,0 +1,73 @@
+/* Player 1 phase controls live inside the LP/Bond/Task/Hand status row. */
+
+/* Hide the original side-dock copies while preserving their React handlers. */
+.app-shell > .turn-console .primary-controls > button.advance,
+.app-shell > .turn-console .primary-controls > button.reset-match {
+  display: none !important;
+}
+
+.player-panel:not(.opponent) .stat-row {
+  align-items: center;
+}
+
+.inline-turn-controls {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex: 0 0 auto;
+  margin-inline: 3px;
+}
+
+.inline-turn-controls button {
+  border-radius: 999px;
+  font-weight: 950;
+  letter-spacing: .05em;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.inline-turn-advance {
+  min-height: 27px;
+  padding: 6px 10px;
+  border: 1px solid #ffe58d;
+  background: var(--gold);
+  color: #201700;
+  font-size: 7px;
+  box-shadow: 0 5px 14px rgba(255,216,92,.14);
+}
+.inline-turn-advance:hover:not(:disabled) {
+  filter: brightness(1.07);
+}
+.inline-turn-advance:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.inline-turn-reset {
+  min-height: 23px;
+  padding: 5px 7px;
+  border: 1px solid rgba(255,116,116,.42);
+  background: rgba(63,12,17,.78);
+  color: #ffabab;
+  font-size: 6px;
+}
+.inline-turn-reset:hover {
+  border-color: rgba(255,150,150,.7);
+  color: #ffd1d1;
+}
+
+@media (max-width: 900px) {
+  .player-panel:not(.opponent) .stat-row {
+    flex-wrap: wrap !important;
+  }
+  .inline-turn-controls {
+    order: 10;
+    width: 100%;
+    margin: 2px 0 0;
+  }
+  .inline-turn-advance {
+    min-height: 25px;
+    padding-inline: 9px;
+  }
+}
