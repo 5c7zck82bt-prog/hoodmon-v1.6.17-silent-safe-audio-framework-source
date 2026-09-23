@@ -66,6 +66,17 @@
   grid-template-columns: minmax(92px,.7fr) repeat(3,minmax(104px,1fr)) repeat(3,minmax(66px,.54fr)) !important;
 }
 
+/* Pull the local player's hand upward toward the Magic/Equip support rail.
+   The hand remains fixed and readable, but no longer sits so far below the field. */
+.battle-hand-shell {
+  bottom: 26px !important;
+}
+.battle-hand-fan {
+  min-height: 166px !important;
+  padding-top: 20px !important;
+  padding-bottom: 0 !important;
+}
+
 @media (max-width: 900px) {
   .player-panel:not(.opponent) > .task-row {
     margin-top: 4px !important;
@@ -75,5 +86,12 @@
   .player-panel:not(.opponent) > .hoodmon-row,
   .player-panel:not(.opponent) > .zone-row {
     margin-top: 5px !important;
+  }
+  .battle-hand-shell {
+    bottom: 14px !important;
+  }
+  .battle-hand-fan {
+    min-height: 148px !important;
+    padding-top: 16px !important;
   }
 }
