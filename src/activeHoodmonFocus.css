@@ -1,0 +1,41 @@
+/* Active Hoodmon focus — visual emphasis only. No sizing, spacing, or field-order changes. */
+
+.hoodmon-slot.active-card {
+  position: relative;
+  border-color: rgba(255, 216, 92, .58) !important;
+  background:
+    radial-gradient(circle at 18% 50%, rgba(255, 216, 92, .075), transparent 42%),
+    rgba(4, 12, 17, .88) !important;
+  box-shadow:
+    inset 0 0 24px rgba(255, 216, 92, .045),
+    0 0 0 1px rgba(255, 216, 92, .08),
+    0 8px 22px rgba(0, 0, 0, .22) !important;
+}
+
+.player-panel.turn-owner .hoodmon-slot.active-card {
+  border-color: rgba(43, 213, 255, .72) !important;
+  box-shadow:
+    inset 0 0 28px rgba(43, 213, 255, .06),
+    0 0 0 1px rgba(43, 213, 255, .12),
+    0 0 18px rgba(43, 213, 255, .10),
+    0 8px 22px rgba(0, 0, 0, .22) !important;
+}
+
+.hoodmon-slot.active-card .battle-card-art {
+  filter: brightness(1.04) contrast(1.03);
+}
+
+.hoodmon-slot.active-card .hoodmon-slot-heading .eyebrow {
+  color: #ffe58d !important;
+  font-weight: 1000;
+}
+
+.player-panel.turn-owner .hoodmon-slot.active-card .hoodmon-slot-heading .eyebrow {
+  color: #78e7ff !important;
+}
+
+/* Keep empty Active slots visually important without affecting their footprint. */
+.hoodmon-slot.active-card.empty {
+  border-style: dashed !important;
+  background: rgba(7, 17, 23, .72) !important;
+}
