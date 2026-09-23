@@ -1,0 +1,1 @@
+The approved HOODMON card asset tree already exists in this repository under `Public/Cards`. Vercel requires lowercase `public/cards` on Linux. This directory is the lowercase deployment path.
