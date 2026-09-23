@@ -1,0 +1,279 @@
+import { useEffect, useRef, useState, type DragEvent } from 'react'
+import { useGame } from '../game/GameContext'
+import { cardById } from '../data/series1Cards'
+import { canDropOnHoodmonSlot, canDropOnSupportZone, type HoodmonDropTarget } from '../game/handLegality'
+import type { SupportTarget } from '../game/engine/support'
+import type { CardInstance, PlayerId } from '../game/engine/types'
+import { COMPLETED_TASKS_TO_WIN } from '../game/engine/constants'
+import { effectiveAtk, effectiveHp, effectiveTask } from '../game/engine/helpers'
+
+type SlotImpact = { kind: 'deploy' | 'evolve' | 'damage' | 'ko' | 'switch' | 'leave'; ghostDefinitionId?: string }
+
+interface PlayerPanelProps {
+  playerId: PlayerId
+  opponent?: boolean
+  handCardId?: string | null
+  acceptHandDrops?: boolean
+  onCardPlayed?: () => void
+}
+
+export function PlayerPanel({ playerId, opponent = false, handCardId = null, acceptHandDrops = false, onCardPlayed }: PlayerPanelProps) {
+  const { state, definitions, actions } = useGame()
+  const player = state.players[playerId]
+  const isTurn = state.currentPlayerTurn === playerId
+  const tamerDefinition = player.tamer ? definitions[player.tamer.definitionId] : undefined
+  const tamerArt = player.tamer ? cardById[player.tamer.definitionId] : undefined
+  const slots = [player.activeHoodmon, ...player.reserves]
+  const slotSignature = slots.map((card) => card ? `${card.instanceId}:${card.definitionId}:${card.damageTaken}` : '-').join('|')
+  const previousSlotsRef = useRef<Array<CardInstance | null> | null>(null)
+  const impactTimersRef = useRef<Record<number, number>>({})
+  const [slotImpacts, setSlotImpacts] = useState<Record<number, SlotImpact>>({})
+
+  useEffect(() => {
+    const snapshot = slots.map((card) => card ? { ...card, statuses: [...(card.statuses ?? [])] } : null)
+    const previous = previousSlotsRef.current
+    previousSlotsRef.current = snapshot
+    if (!previous) return
+
+    const currentIds = new Set(snapshot.filter(Boolean).map((card) => card!.instanceId))
+    const previousIds = new Set(previous.filter(Boolean).map((card) => card!.instanceId))
+    const nextImpacts: Record<number, SlotImpact> = {}
+
+    snapshot.forEach((card, index) => {
+      const before = previous[index]
+      if (before && card && before.instanceId === card.instanceId) {
+        if (before.definitionId !== card.definitionId) nextImpacts[index] = { kind: 'evolve' }
+        else if (card.damageTaken > before.damageTaken) nextImpacts[index] = { kind: 'damage' }
+        return
+      }
+      if (!before && card) {
+        nextImpacts[index] = { kind: previousIds.has(card.instanceId) ? 'switch' : 'deploy' }
+        return
+      }
+      if (before && !card) {
+        if (currentIds.has(before.instanceId)) return
+        const beforeName = definitions[before.definitionId]?.name ?? before.definitionId
+        const wasDefeated = state.eventLog.slice(-5).some((line) => line.includes(`${beforeName} was defeated.`))
+        nextImpacts[index] = { kind: wasDefeated ? 'ko' : 'leave', ghostDefinitionId: before.definitionId }
+        return
+      }
+      if (before && card && before.instanceId !== card.instanceId) {
+        nextImpacts[index] = { kind: previousIds.has(card.instanceId) ? 'switch' : 'deploy' }
+      }
+    })
+
+    const entries = Object.entries(nextImpacts)
+    if (!entries.length) return
+    setSlotImpacts((current) => ({ ...current, ...nextImpacts }))
+    for (const [rawIndex, impact] of entries) {
+      const index = Number(rawIndex)
+      const existing = impactTimersRef.current[index]
+      if (existing) window.clearTimeout(existing)
+      const duration = impact.kind === 'ko' || impact.kind === 'leave' ? 760 : impact.kind === 'evolve' ? 900 : 620
+      impactTimersRef.current[index] = window.setTimeout(() => {
+        setSlotImpacts((current) => {
+          const next = { ...current }
+          delete next[index]
+          return next
+        })
+        delete impactTimersRef.current[index]
+      }, duration)
+    }
+  }, [slotSignature])
+
+  useEffect(() => () => {
+    Object.values(impactTimersRef.current).forEach((timer) => window.clearTimeout(timer))
+  }, [])
+
+  const draggedCard = (event: DragEvent<HTMLElement>) => event.dataTransfer.getData('text/hoodmon-card-id') || handCardId || ''
+
+  const dropSupport = (event: DragEvent<HTMLElement>, target: SupportTarget) => {
+    if (!acceptHandDrops) return
+    event.preventDefault()
+    const cardId = draggedCard(event)
+    if (!cardId) return
+    actions.playSupport(cardId, target)
+    onCardPlayed?.()
+  }
+
+  const clickSupport = (target: SupportTarget) => {
+    if (!acceptHandDrops || !handCardId) return
+    actions.playSupport(handCardId, target)
+    onCardPlayed?.()
+  }
+
+  const dropHoodmon = (event: DragEvent<HTMLElement>, target: HoodmonDropTarget, occupant: CardInstance | null) => {
+    if (!acceptHandDrops) return
+    event.preventDefault()
+    const cardId = draggedCard(event)
+    if (!cardId) return
+    if (occupant) actions.evolve(occupant.instanceId, cardId)
+    else actions.deploy(cardId, target)
+    onCardPlayed?.()
+  }
+
+  const clickHoodmon = (target: HoodmonDropTarget, occupant: CardInstance | null) => {
+    if (!acceptHandDrops || !handCardId) return
+    if (occupant) actions.evolve(occupant.instanceId, handCardId)
+    else actions.deploy(handCardId, target)
+    onCardPlayed?.()
+  }
+
+  return (
+    <section className={`player-panel ${opponent ? 'opponent' : ''} ${isTurn ? 'turn-owner' : ''}`}>
+      <div className="player-header">
+        <div>
+          <span className="eyebrow">{playerId === 'P1' ? 'PLAYER 1' : 'PLAYER 2'}</span>
+          <strong>{isTurn ? '● ACTIVE TURN' : 'WAITING'}</strong>
+        </div>
+        <div className="stat-row">
+          <span>LP <b>{player.lp}</b></span>
+          <span>BOND <b>{player.bond}/10</b></span>
+          <span>TASKS <b>{player.completedTasks}/{COMPLETED_TASKS_TO_WIN}</b></span>
+          <span>HAND <b>{player.hand.length}</b></span>
+        </div>
+      </div>
+
+      <div className="task-race-strip" aria-label={`${player.completedTasks} of ${COMPLETED_TASKS_TO_WIN} Tasks completed`}>
+        <span>TASK WIN PROGRESS</span>
+        <div className="task-race-track"><i style={{ width: `${Math.min(100, (player.completedTasks / COMPLETED_TASKS_TO_WIN) * 100)}%` }} /></div>
+        <b>{player.completedTasks}/{COMPLETED_TASKS_TO_WIN}</b>
+      </div>
+
+      <div className="zone-row">
+        <div className={`zone tamer-zone ${player.tamer ? 'filled' : ''}`}>
+          {tamerArt && <img src={tamerArt.image} alt="" />}
+          <span>TAMER</span>
+          <small>{tamerDefinition?.name ?? 'UNASSIGNED'}{player.tamer ? ` · ${player.tamer.readyState.toUpperCase()}` : ''}</small>
+        </div>
+        <SupportZone title="FIELD" card={player.field} target="field" opponent={opponent} valid={acceptHandDrops && canDropOnSupportZone(state, definitions, playerId, handCardId, 'field')} onDrop={dropSupport} onClick={clickSupport} />
+        <SupportZone title="MAGIC / EQUIP 1" card={player.magic[0]} target="magic_1" opponent={opponent} valid={acceptHandDrops && canDropOnSupportZone(state, definitions, playerId, handCardId, 'magic_1')} onDrop={dropSupport} onClick={clickSupport} />
+        <SupportZone title="MAGIC / EQUIP 2" card={player.magic[1]} target="magic_2" opponent={opponent} valid={acceptHandDrops && canDropOnSupportZone(state, definitions, playerId, handCardId, 'magic_2')} onDrop={dropSupport} onClick={clickSupport} />
+        <SupportZone title="MAGIC / EQUIP 3" card={player.magic[2]} target="magic_3" opponent={opponent} valid={acceptHandDrops && canDropOnSupportZone(state, definitions, playerId, handCardId, 'magic_3')} onDrop={dropSupport} onClick={clickSupport} />
+        <SupportZone title="TRAP 1" card={player.traps[0]} target="trap_1" opponent={opponent} valid={acceptHandDrops && canDropOnSupportZone(state, definitions, playerId, handCardId, 'trap_1')} onDrop={dropSupport} onClick={clickSupport} />
+        <SupportZone title="TRAP 2" card={player.traps[1]} target="trap_2" opponent={opponent} valid={acceptHandDrops && canDropOnSupportZone(state, definitions, playerId, handCardId, 'trap_2')} onDrop={dropSupport} onClick={clickSupport} />
+      </div>
+
+      <div className="hoodmon-row">
+        <HoodmonSlot card={player.activeHoodmon} title="ACTIVE HOODMON" target="active" active impact={slotImpacts[0]} valid={acceptHandDrops && canDropOnHoodmonSlot(state, definitions, playerId, handCardId, 'active', player.activeHoodmon)} onDrop={dropHoodmon} onClick={clickHoodmon} />
+        {player.reserves.map((card, index) => {
+          const target = `reserve_${index + 1}` as HoodmonDropTarget
+          return <HoodmonSlot key={index} card={card} title={`RESERVE ${index + 1}`} target={target} impact={slotImpacts[index + 1]} valid={acceptHandDrops && canDropOnHoodmonSlot(state, definitions, playerId, handCardId, target, card)} onDrop={dropHoodmon} onClick={clickHoodmon} />
+        })}
+      </div>
+
+      <div className="task-row">
+        <span className="eyebrow">FACE-UP TASKS · EITHER PLAYER MAY ATTEMPT</span>
+        {player.taskZone.map((task, index) => {
+          const definition = task ? definitions[task] : undefined
+          return (
+            <div className={`task-slot ${task ? 'filled' : ''}`} key={index}>
+              {definition ? (
+                <><b>{definition.name}</b><small>{definition.taskTier ?? 'Task'} · Difficulty {definition.taskDifficulty ?? 0} · +1 Completed Task</small></>
+              ) : 'EMPTY'}
+            </div>
+          )
+        })}
+        <div className="deck-count">TASK DECK <b>{player.taskDeck.length}</b></div>
+        <div className="deck-count">MAIN DECK <b>{player.hoodmonDeck.length}</b></div>
+        {(state.players.P1.field?.definitionId === 'HDM-083' || state.players.P2.field?.definitionId === 'HDM-083') && (
+          <div className="deck-count truth-network-reveal">TOP REVEALED <b>{player.hoodmonDeck[0] ? (definitions[player.hoodmonDeck[0]]?.name ?? player.hoodmonDeck[0]) : 'EMPTY'}</b></div>
+        )}
+        <div className="deck-count">DISCARD <b>{player.discard.length}</b></div>
+      </div>
+    </section>
+  )
+}
+
+function HoodmonSlot({ card, title, target, active = false, impact, valid, onDrop, onClick }: {
+  card: CardInstance | null
+  title: string
+  target: HoodmonDropTarget
+  active?: boolean
+  impact?: SlotImpact
+  valid: boolean
+  onDrop: (event: DragEvent<HTMLElement>, target: HoodmonDropTarget, occupant: CardInstance | null) => void
+  onClick: (target: HoodmonDropTarget, occupant: CardInstance | null) => void
+}) {
+  const { definitions } = useGame()
+  const definition = card ? definitions[card.definitionId] : undefined
+  const art = card ? cardById[card.definitionId] : undefined
+  const hp = effectiveHp(definition, card)
+  const atk = effectiveAtk(definition, card)
+  const task = effectiveTask(definition, card)
+  const remainingHp = Math.max(0, hp - (card?.damageTaken ?? 0))
+  const healthPct = hp > 0 ? Math.max(0, Math.min(100, (remainingHp / hp) * 100)) : 0
+
+  const className = `hoodmon-slot ${active ? 'active-card' : 'reserve-card'} ${!card ? 'empty' : 'has-card'} ${card?.readyState === 'exhausted' ? 'exhausted' : ''} ${healthPct <= 35 && card ? 'critical-hp' : ''} ${valid ? 'valid-drop' : ''} ${impact ? `impact-${impact.kind}` : ''}`
+  const ghostArt = impact?.ghostDefinitionId ? cardById[impact.ghostDefinitionId] : undefined
+
+  return (
+    <div
+      className={className}
+      onDragOver={(event) => { if (valid) event.preventDefault() }}
+      onDrop={valid ? (event) => onDrop(event, target, card) : undefined}
+      onClick={() => valid && onClick(target, card)}
+      role={valid ? 'button' : undefined}
+      tabIndex={valid ? 0 : undefined}
+      onKeyDown={valid ? (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onClick(target, card) } } : undefined}
+    >
+      {ghostArt && (impact?.kind === 'ko' || impact?.kind === 'leave') && (
+        <div className={`hoodmon-exit-ghost ${impact.kind}`} aria-hidden="true"><img src={ghostArt.image} alt="" /></div>
+      )}
+      {!card ? (
+        <><span>{title}</span><small>{valid ? 'DROP CARD HERE' : 'EMPTY'}</small></>
+      ) : (
+        <>
+          {art && <img className="battle-card-art" src={art.image} alt="" />}
+          <div className="battle-card-copy">
+            <div className="hoodmon-slot-heading"><span className="eyebrow">{valid ? 'EVOLVE HERE' : title}</span><span className={`readiness-badge ${card.readyState}`}>{card.readyState.toUpperCase()}</span></div>
+            <strong>{definition?.name ?? card.definitionId}</strong>
+            <small>HP {remainingHp}/{hp || '?'} · {healthPct <= 35 ? 'DANGER' : 'STABLE'}</small>
+            <div className="battle-status-row">
+              {card.statuses?.includes('charmed') && <small className="status-chip charmed">CHARMED</small>}
+              {card.statuses?.includes('marked') && <small className="status-chip marked">MARKED</small>}
+            </div>
+            <div className="health-track" aria-label={`${remainingHp} of ${hp} HP`}><i style={{ width: `${healthPct}%` }} /></div>
+            {definition && <div className="hoodmon-statline"><small>ATK <b>{atk}</b></small><small>TASK <b>{task}</b></small><small>CMD <b>{card.commandsUsedThisTurn}/1</b></small></div>}
+          </div>
+        </>
+      )}
+    </div>
+  )
+}
+
+function SupportZone({ title, card, target, opponent, valid, onDrop, onClick }: {
+  title: string
+  card: CardInstance | null
+  target: SupportTarget
+  opponent: boolean
+  valid: boolean
+  onDrop: (event: DragEvent<HTMLElement>, target: SupportTarget) => void
+  onClick: (target: SupportTarget) => void
+}) {
+  const { definitions } = useGame()
+  const definition = card ? definitions[card.definitionId] : undefined
+  const art = card ? cardById[card.definitionId] : undefined
+  const hiddenTrap = opponent && target.startsWith('trap_') && Boolean(card)
+  return (
+    <div
+      className={`zone support-zone ${card ? 'filled' : ''} ${valid ? 'valid-drop' : ''}`}
+      onDragOver={(event) => { if (valid) event.preventDefault() }}
+      onDrop={valid ? (event) => onDrop(event, target) : undefined}
+      onClick={() => valid && onClick(target)}
+      role={valid ? 'button' : undefined}
+      tabIndex={valid ? 0 : undefined}
+      onKeyDown={valid ? (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onClick(target) } } : undefined}
+    >
+      <span className="zone-name">{title}</span>
+      {card ? (
+        hiddenTrap ? <div className="trap-card-back"><b>♛</b><span>SET TRAP</span></div> : (
+          <>
+            {art && <img className="support-card-art" src={art.image} alt="" />}
+            <small>{definition?.name ?? card.definitionId}</small>
+          </>
+        )
+      ) : <small>{valid ? 'DROP CARD HERE' : 'OPEN'}</small>}
+    </div>
+  )
+}
