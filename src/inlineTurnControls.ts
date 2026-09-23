@@ -15,6 +15,7 @@ function syncInlineTurnControls() {
   const stats = document.querySelector<HTMLElement>('.player-panel:not(.opponent) .stat-row')
   const advance = document.querySelector<HTMLButtonElement>('.app-shell > .turn-console .primary-controls > button.advance')
   const reset = document.querySelector<HTMLButtonElement>('.app-shell > .turn-console .primary-controls > button.reset-match')
+  const activePhase = document.querySelector<HTMLElement>('.phase-pill.active')?.textContent?.trim().toLowerCase() || ''
   let host = document.getElementById(INLINE_CONTROLS_ID)
 
   if (!stats || !advance || !reset) {
@@ -56,6 +57,9 @@ function syncInlineTurnControls() {
     const taskStat = stats.children.item(2)
     stats.insertBefore(host, taskStat)
   }
+
+  if (activePhase) host.dataset.phase = activePhase
+  else delete host.dataset.phase
 
   const nextButton = host.querySelector<HTMLButtonElement>('.inline-turn-advance')
   if (nextButton) {
