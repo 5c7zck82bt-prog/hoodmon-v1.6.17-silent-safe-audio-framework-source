@@ -3,6 +3,7 @@ import { cardById } from '../data/series1Cards'
 import { useGame } from '../game/GameContext'
 import type { CardDefinition, PlayerId } from '../game/engine/types'
 import { definitionEffectLabel } from '../game/series1Runtime'
+import { CardZoomViewer } from './CardZoomViewer'
 
 interface BattleHandProps {
   playerId: PlayerId
@@ -30,6 +31,7 @@ export function BattleHand({ playerId, selectedCardId, onSelectedCardChange, onD
   const { state, definitions } = useGame()
   const [hoveredCardId, setHoveredCardId] = useState<string | null>(null)
   const [selectedCardKey, setSelectedCardKey] = useState<string | null>(null)
+  const [zoomedCardId, setZoomedCardId] = useState<string | null>(null)
   const [failedImages, setFailedImages] = useState<Set<string>>(() => new Set())
   const player = state.players[playerId]
   const handPlayEnabled = state.status === 'active' && state.currentPlayerTurn === playerId && state.currentPhase === 'Main'
@@ -78,7 +80,7 @@ export function BattleHand({ playerId, selectedCardId, onSelectedCardChange, onD
     <section className="battle-hand-shell" aria-label={`${playerId} hand`}>
       <div className="hand-heading">
         <div><span className="eyebrow">YOUR HAND</span><strong>{player.hand.length} CARDS</strong></div>
-        <small>{handPlayEnabled ? 'DRAG A CARD TO A GLOWING ZONE · OR SELECT THEN CLICK THE ZONE' : 'YOUR HAND STAYS VISIBLE · CARD PLAY UNLOCKS DURING YOUR MAIN PHASE'}</small>
+        <small>{handPlayEnabled ? 'CLICK ONCE FOR INFO · CLICK THE SELECTED CARD AGAIN FOR FULL VIEW · DRAG TO A GLOWING ZONE' : 'CLICK ONCE FOR INFO · CLICK AGAIN FOR FULL CARD VIEW'}</small>
       </div>
 
       <div className="battle-hand-fan">
@@ -99,15 +101,14 @@ export function BattleHand({ playerId, selectedCardId, onSelectedCardChange, onD
               onMouseLeave={() => setHoveredCardId(null)}
               onClick={() => {
                 if (selected) {
-                  setSelectedCardKey(null)
-                  onSelectedCardChange(null)
+                  setZoomedCardId(id)
                 } else {
                   setSelectedCardKey(key)
                   onSelectedCardChange(id)
                 }
               }}
               style={{ zIndex: index + 1 }}
-              aria-label={`${definition?.name ?? id}${selected ? ', selected' : ''}`}
+              aria-label={`${definition?.name ?? id}${selected ? ', selected. Click again for full card view' : ', click for card information'}`}
               data-audio-cue="card_pickup"
             >
               {art && !failedImages.has(id) ? (
@@ -128,14 +129,31 @@ export function BattleHand({ playerId, selectedCardId, onSelectedCardChange, onD
           ) : (
             <div className="preview-fallback">{previewDefinition?.name ?? previewId}</div>
           )}
-          <div>
+          <div className="hand-preview-card-info">
             <span className="eyebrow">SELECTED / PREVIEW</span>
             <strong>{previewDefinition?.name ?? previewId}</strong>
             <small>{previewDefinition?.cardType.toUpperCase() ?? 'CARD'}{previewDefinition?.stageLevel ? ` · STAGE ${previewDefinition.stageLevel}` : ''} · {cardPreviewResource(previewDefinition)}</small>
+            {previewDefinition && (
+              <div className="hand-preview-stats">
+                {previewDefinition.cardType === 'hoodmon' && <><small>ATK <b>{previewDefinition.atk ?? 0}</b></small><small>HP <b>{previewDefinition.hp ?? 0}</b></small><small>TASK <b>{previewDefinition.taskRating ?? 0}</b></small></>}
+                {previewDefinition.cardType === 'task' && <><small>DIFFICULTY <b>{previewDefinition.taskDifficulty ?? 0}</b></small><small>TIER <b>{previewDefinition.taskTier ?? 'TASK'}</b></small></>}
+                {previewDefinition.cardType !== 'hoodmon' && previewDefinition.cardType !== 'task' && <small>COST <b>{previewDefinition.bondCost ?? 0}</b></small>}
+                {previewDefinition.magicSubtype && <small>TYPE <b>{previewDefinition.magicSubtype}</b></small>}
+              </div>
+            )}
+            {previewDefinition?.attacks && previewDefinition.attacks.length > 0 && (
+              <div className="hand-preview-attacks">
+                {previewDefinition.attacks.map((attack) => <small key={attack.attackName}><b>{attack.attackName}</b> · {attack.baseDamage} DMG{attack.cost ? ` · ${attack.cost} Bond` : ''}</small>)}
+              </div>
+            )}
+            <p className="hand-preview-effect">{previewDefinition?.effectText?.trim() || 'No additional effect text.'}</p>
             <small className={`effect-data-status ${previewDefinition?.effectStatus === 'pending' ? 'pending' : 'verified'}`}>{definitionEffectLabel(previewId)}</small>
+            {selectedCardId === previewId && <small className="hand-preview-hint">CLICK THE SELECTED CARD AGAIN TO ENLARGE THE FULL CARD ART</small>}
           </div>
         </aside>
       )}
+
+      <CardZoomViewer definitionId={zoomedCardId} onClose={() => setZoomedCardId(null)} />
     </section>
   )
 }
