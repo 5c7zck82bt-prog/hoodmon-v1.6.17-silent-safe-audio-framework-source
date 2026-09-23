@@ -39,16 +39,34 @@
 }
 
 /* Player 2 order:
-   face-up Tasks -> P2 status -> support zones -> Hoodmons -> pink Task progress.
-   This keeps the opponent field mirrored horizontally while moving only the
-   requested vertical rails. */
+   support zones -> Hoodmons -> pink Task progress -> face-up Tasks -> P2 status.
+   Player 2 remains horizontally mirrored by the existing arena rules. */
 .player-panel.opponent {
   display: flex !important;
   flex-direction: column !important;
 }
 
-.player-panel.opponent > .task-row {
+.player-panel.opponent > .zone-row {
   order: 1;
+  margin-top: 0 !important;
+  margin-bottom: 6px !important;
+}
+
+.player-panel.opponent > .hoodmon-row {
+  order: 2;
+  margin-top: 0 !important;
+}
+
+.player-panel.opponent > .task-race-strip {
+  order: 3;
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+  border-top: 1px solid rgba(255,57,199,.12);
+  border-bottom: 1px solid rgba(255,57,199,.08);
+}
+
+.player-panel.opponent > .task-row {
+  order: 4;
   margin-top: 0 !important;
   margin-bottom: 5px !important;
   padding: 5px 0 6px;
@@ -56,25 +74,9 @@
 }
 
 .player-panel.opponent > .player-header {
-  order: 2;
-  margin: 0 !important;
-}
-
-.player-panel.opponent > .zone-row {
-  order: 3;
-  margin-top: 6px !important;
-}
-
-.player-panel.opponent > .hoodmon-row {
-  order: 4;
-  margin-top: 6px !important;
-}
-
-.player-panel.opponent > .task-race-strip {
   order: 5;
-  margin-top: 5px !important;
-  margin-bottom: 0 !important;
-  border-top: 1px solid rgba(255,57,199,.12);
+  margin: 0 !important;
+  padding-top: 2px;
 }
 
 /* Fixed inspectors do not participate in either field layout. */
@@ -128,17 +130,17 @@
     margin-top: 5px !important;
   }
 
+  .player-panel.opponent > .zone-row {
+    margin-bottom: 5px !important;
+  }
+  .player-panel.opponent > .task-race-strip {
+    margin-top: 4px !important;
+    margin-bottom: 4px !important;
+  }
   .player-panel.opponent > .task-row {
     margin-bottom: 4px !important;
     padding-top: 4px;
     padding-bottom: 4px;
-  }
-  .player-panel.opponent > .zone-row,
-  .player-panel.opponent > .hoodmon-row {
-    margin-top: 5px !important;
-  }
-  .player-panel.opponent > .task-race-strip {
-    margin-top: 4px !important;
   }
 
   .battle-hand-shell {
