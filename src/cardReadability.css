@@ -78,23 +78,37 @@
   letter-spacing: .08em;
 }
 
-/* Enlarged view: no dialog frame, caption, or extra chrome — just the card. */
+/* Full-card view is portaled directly to document.body so board overflow,
+   transforms, and stacking contexts can never clip or cover it. */
 .card-zoom-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: grid;
-  place-items: center;
-  padding: 20px;
-  background: rgba(0, 3, 7, .84);
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483647 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  margin: 0;
+  padding: 24px;
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+  background: rgba(0, 3, 7, .86);
   backdrop-filter: blur(9px);
   cursor: zoom-out;
   pointer-events: auto !important;
+  isolation: isolate;
 }
 
 .card-zoom-card-button {
   appearance: none;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
   margin: 0;
   padding: 0;
   border: 0;
@@ -102,43 +116,47 @@
   background: transparent;
   line-height: 0;
   cursor: zoom-out;
-  max-width: calc(100vw - 40px);
-  max-height: calc(100dvh - 40px);
+  max-width: calc(100vw - 48px);
+  max-height: calc(100dvh - 48px);
 }
 
 .card-zoom-card {
   display: block;
-  width: auto;
-  height: auto;
-  max-width: min(72vw, 560px);
-  max-height: min(82dvh, 820px);
-  object-fit: contain;
-  border: 0;
-  outline: 0;
-  border-radius: 0;
-  box-shadow: 0 24px 70px rgba(0,0,0,.78);
+  width: auto !important;
+  height: auto !important;
+  max-width: min(78vw, 540px) !important;
+  max-height: calc(100dvh - 72px) !important;
+  object-fit: contain !important;
+  object-position: center center;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: 0 26px 80px rgba(0,0,0,.82);
   user-select: none;
   -webkit-user-drag: none;
   cursor: zoom-out;
 }
 
 .card-zoom-card-button:focus-visible .card-zoom-card {
-  box-shadow: 0 24px 70px rgba(0,0,0,.78), 0 0 0 2px rgba(255,216,92,.72);
+  box-shadow: 0 26px 80px rgba(0,0,0,.82), 0 0 0 2px rgba(255,216,92,.72);
 }
 
 @media (max-width: 700px) {
-  .card-zoom-backdrop { padding: 12px; }
+  .card-zoom-backdrop { padding: 16px; }
   .card-zoom-card-button {
-    max-width: calc(100vw - 24px);
-    max-height: calc(100dvh - 24px);
+    max-width: calc(100vw - 32px);
+    max-height: calc(100dvh - 32px);
   }
   .card-zoom-card {
-    max-width: min(88vw, 460px);
-    max-height: 80dvh;
+    max-width: min(88vw, 460px) !important;
+    max-height: calc(100dvh - 56px) !important;
   }
   .board-card-inspector::after { font-size: 7px; }
 }
 
 @media (max-height: 700px) {
-  .card-zoom-card { max-height: 76dvh; }
+  .card-zoom-card {
+    max-width: min(64vw, 460px) !important;
+    max-height: calc(100dvh - 48px) !important;
+  }
 }
