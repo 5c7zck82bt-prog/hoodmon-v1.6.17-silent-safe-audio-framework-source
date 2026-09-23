@@ -7,6 +7,8 @@ import './cardReadability.css'
 import './attackClarity.css'
 import './battleLayoutV2.css'
 import './playerFieldMirror.css'
+import './inlineTurnControls.css'
+import './inlineTurnControls'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
