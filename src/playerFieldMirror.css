@@ -1,6 +1,6 @@
-/* HOODMON Player 1 field-order layer.
-   Player 2 is intentionally left on its existing/original layout.
-   Only Player 1 gets the task-first arrangement requested for the local field. */
+/* HOODMON player field-order layer.
+   Player 1 keeps its task-first local layout. Player 2 uses its own requested
+   opponent arrangement without changing any gameplay behavior. */
 
 .player-panel:not(.opponent) {
   display: flex !important;
@@ -38,13 +38,53 @@
   margin-top: 6px !important;
 }
 
-/* Fixed inspector does not participate in Player 1 field layout. */
-.player-panel:not(.opponent) > .board-card-inspector {
+/* Player 2 order:
+   face-up Tasks -> P2 status -> support zones -> Hoodmons -> pink Task progress.
+   This keeps the opponent field mirrored horizontally while moving only the
+   requested vertical rails. */
+.player-panel.opponent {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.player-panel.opponent > .task-row {
+  order: 1;
+  margin-top: 0 !important;
+  margin-bottom: 5px !important;
+  padding: 5px 0 6px;
+  border-bottom: 1px solid rgba(255,57,199,.13);
+}
+
+.player-panel.opponent > .player-header {
+  order: 2;
+  margin: 0 !important;
+}
+
+.player-panel.opponent > .zone-row {
+  order: 3;
+  margin-top: 6px !important;
+}
+
+.player-panel.opponent > .hoodmon-row {
+  order: 4;
+  margin-top: 6px !important;
+}
+
+.player-panel.opponent > .task-race-strip {
+  order: 5;
+  margin-top: 5px !important;
+  margin-bottom: 0 !important;
+  border-top: 1px solid rgba(255,57,199,.12);
+}
+
+/* Fixed inspectors do not participate in either field layout. */
+.player-panel:not(.opponent) > .board-card-inspector,
+.player-panel.opponent > .board-card-inspector {
   order: 99;
 }
 
 /* Keep Player 1's compact sizing from the new board layout. Player 2 sizing,
-   order, mirroring, and spacing are controlled by the pre-existing arena CSS. */
+   mirroring, and card dimensions remain controlled by the pre-existing arena CSS. */
 .player-panel:not(.opponent) .hoodmon-slot.active-card {
   min-height: 146px !important;
 }
@@ -87,6 +127,20 @@
   .player-panel:not(.opponent) > .zone-row {
     margin-top: 5px !important;
   }
+
+  .player-panel.opponent > .task-row {
+    margin-bottom: 4px !important;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  .player-panel.opponent > .zone-row,
+  .player-panel.opponent > .hoodmon-row {
+    margin-top: 5px !important;
+  }
+  .player-panel.opponent > .task-race-strip {
+    margin-top: 4px !important;
+  }
+
   .battle-hand-shell {
     bottom: 14px !important;
   }
