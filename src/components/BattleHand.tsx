@@ -77,12 +77,7 @@ export function BattleHand({ playerId, selectedCardId, onSelectedCardChange, onD
   const endDrag = () => onDraggingCardChange(null)
 
   return (
-    <section className="battle-hand-shell" aria-label={`${playerId} hand`}>
-      <div className="hand-heading">
-        <div><span className="eyebrow">YOUR HAND</span><strong>{player.hand.length} CARDS</strong></div>
-        <small>{handPlayEnabled ? 'CLICK ONCE FOR INFO · CLICK THE SELECTED CARD AGAIN FOR FULL VIEW · DRAG TO A GLOWING ZONE' : 'CLICK ONCE FOR INFO · CLICK AGAIN FOR FULL CARD VIEW'}</small>
-      </div>
-
+    <section className="battle-hand-shell" aria-label={`${playerId} hand, ${player.hand.length} cards`}>
       <div className="battle-hand-fan">
         {instances.length === 0 && <div className="empty-hand">NO CARDS IN HAND</div>}
         {instances.map(({ id, key }, index) => {
