@@ -2,11 +2,5 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "vite",
   "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "rewrites": [
-    {
-      "source": "/cards/:path*",
-      "destination": "https://raw.githubusercontent.com/5c7zck82bt-prog/hoodmon-tcg-app2.0./main/public/cards/:path*"
-    }
-  ]
+  "outputDirectory": "dist"
 }
