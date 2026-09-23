@@ -1,0 +1,1 @@
+Vercel asset-path repair: the repository already contained the complete card library under `Public/Cards`, including `Public/Cards/current/hdm-100.webp` through `hdm-110.webp`. Vite/Vercel expects lowercase `public/cards` on Linux. The deployment is being corrected to expose the existing approved assets at lowercase paths without modifying the image files.
