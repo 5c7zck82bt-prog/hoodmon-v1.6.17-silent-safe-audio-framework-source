@@ -1,0 +1,136 @@
+/* HOODMON combat-source clarity. Presentation only; combat engine remains unchanged. */
+
+/* Mark the attacking Active Hoodmon during the existing attack-impact window. */
+body:has(.attack-impact-lane.attacker-p1) .player-panel:not(.opponent) .hoodmon-slot.active-card,
+body:has(.attack-impact-lane.attacker-p2) .player-panel.opponent .hoodmon-slot.active-card {
+  position: relative;
+  z-index: 215;
+  outline: 3px solid #2bd5ff;
+  outline-offset: 4px;
+  box-shadow:
+    inset 0 0 34px rgba(43,213,255,.13),
+    0 0 32px rgba(43,213,255,.42) !important;
+}
+
+body:has(.attack-impact-lane.attacker-p1) .player-panel:not(.opponent) .hoodmon-slot.active-card::before,
+body:has(.attack-impact-lane.attacker-p2) .player-panel.opponent .hoodmon-slot.active-card::before {
+  content: "ATTACKING";
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  padding: 4px 9px;
+  border: 1px solid #2bd5ff;
+  border-radius: 999px;
+  background: rgba(3, 17, 24, .97);
+  color: #77e7ff;
+  box-shadow: 0 0 16px rgba(43,213,255,.32);
+  font-size: 8px;
+  font-weight: 1000;
+  letter-spacing: .13em;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Mark the opposing Active Hoodmon as the target. */
+body:has(.attack-impact-lane.attacker-p1) .player-panel.opponent .hoodmon-slot.active-card,
+body:has(.attack-impact-lane.attacker-p2) .player-panel:not(.opponent) .hoodmon-slot.active-card {
+  position: relative;
+  z-index: 216;
+  outline: 3px solid #ff735f;
+  outline-offset: 4px;
+  box-shadow:
+    inset 0 0 34px rgba(255,115,95,.14),
+    0 0 38px rgba(255,115,95,.46) !important;
+}
+
+body:has(.attack-impact-lane.attacker-p1) .player-panel.opponent .hoodmon-slot.active-card::before,
+body:has(.attack-impact-lane.attacker-p2) .player-panel:not(.opponent) .hoodmon-slot.active-card::before {
+  content: "TARGET";
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  padding: 4px 9px;
+  border: 1px solid #ff735f;
+  border-radius: 999px;
+  background: rgba(27, 9, 7, .97);
+  color: #ffad9f;
+  box-shadow: 0 0 16px rgba(255,115,95,.32);
+  font-size: 8px;
+  font-weight: 1000;
+  letter-spacing: .13em;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Replace the ambiguous centered impact with a clear source-to-target strike lane. */
+.attack-impact-lane {
+  top: 50% !important;
+  width: 108px !important;
+  height: min(58vh, 520px) !important;
+  overflow: visible !important;
+  filter: drop-shadow(0 0 15px rgba(64,222,255,.42)) !important;
+}
+
+.attack-impact-lane::after {
+  content: "➤";
+  position: absolute;
+  left: 50%;
+  z-index: 4;
+  font-size: 30px;
+  font-weight: 1000;
+  line-height: 1;
+  text-shadow: 0 0 12px currentColor, 0 2px 8px rgba(0,0,0,.8);
+  pointer-events: none;
+}
+
+/* P1 is the lower side, so its strike points upward toward P2. */
+.attack-impact-lane.attacker-p1::after {
+  top: -15px;
+  transform: translateX(-50%) rotate(-90deg);
+  color: #ff9a89;
+}
+
+/* P2 is the upper side, so its strike points downward toward P1. */
+.attack-impact-lane.attacker-p2::after {
+  bottom: -15px;
+  transform: translateX(-50%) rotate(90deg);
+  color: #77e7ff;
+}
+
+/* Make the two active slots themselves reinforce attack direction. */
+body:has(.attack-impact-lane.attacker-p1) .player-panel:not(.opponent) .hoodmon-slot.active-card {
+  animation: hoodmonAttackTowardP2 .68s ease-out both;
+}
+body:has(.attack-impact-lane.attacker-p2) .player-panel.opponent .hoodmon-slot.active-card {
+  animation: hoodmonAttackTowardP1 .68s ease-out both;
+}
+
+@keyframes hoodmonAttackTowardP2 {
+  0%, 100% { transform: translateY(0) scale(1); }
+  38% { transform: translateY(-10px) scale(1.025); }
+}
+
+@keyframes hoodmonAttackTowardP1 {
+  0%, 100% { transform: translateY(0) scale(1); }
+  38% { transform: translateY(10px) scale(1.025); }
+}
+
+@media (max-width: 700px) {
+  .attack-impact-lane {
+    width: 82px !important;
+    height: min(44vh, 360px) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body:has(.attack-impact-lane.attacker-p1) .player-panel:not(.opponent) .hoodmon-slot.active-card,
+  body:has(.attack-impact-lane.attacker-p2) .player-panel.opponent .hoodmon-slot.active-card {
+    animation: none;
+  }
+}
