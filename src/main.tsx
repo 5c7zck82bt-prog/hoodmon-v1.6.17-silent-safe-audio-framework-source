@@ -11,6 +11,7 @@ import './inlineTurnControls.css'
 import './inlineTurnControls'
 import './battlePolishV3.css'
 import './battlePolish'
+import './battleOverlapFix.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
