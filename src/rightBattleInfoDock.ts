@@ -1,3 +1,5 @@
+export {}
+
 type BattleInfoPanel = 'feed' | 'turn'
 
 const HOST_ID = 'battle-info-tabs'
