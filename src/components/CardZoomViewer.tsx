@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { cardById } from '../data/series1Cards'
 import { useGame } from '../game/GameContext'
 
@@ -14,21 +15,31 @@ export function CardZoomViewer({ definitionId, onClose }: CardZoomViewerProps) {
 
   useEffect(() => {
     if (!definitionId) return
-    const previousOverflow = document.body.style.overflow
+
+    const previousBodyOverflow = document.body.style.overflow
+    const previousHtmlOverflow = document.documentElement.style.overflow
+    const previousBodyTouchAction = document.body.style.touchAction
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') onClose()
     }
+
     document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+    document.body.style.touchAction = 'none'
     window.addEventListener('keydown', handleKeyDown)
+
     return () => {
-      document.body.style.overflow = previousOverflow
+      document.body.style.overflow = previousBodyOverflow
+      document.documentElement.style.overflow = previousHtmlOverflow
+      document.body.style.touchAction = previousBodyTouchAction
       window.removeEventListener('keydown', handleKeyDown)
     }
   }, [definitionId, onClose])
 
-  if (!definitionId || !art) return null
+  if (!definitionId || !art || typeof document === 'undefined') return null
 
-  return (
+  return createPortal(
     <div
       className="card-zoom-backdrop"
       role="dialog"
@@ -45,6 +56,7 @@ export function CardZoomViewer({ definitionId, onClose }: CardZoomViewerProps) {
       >
         <img className="card-zoom-card" src={art.image} alt={definition?.name ?? definitionId} draggable={false} />
       </button>
-    </div>
+    </div>,
+    document.body,
   )
 }
