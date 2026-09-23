@@ -4,6 +4,7 @@ import App from './App'
 import { AudioProvider } from './audio/AudioContext'
 import './battleVisualRefresh.css'
 import './cardReadability.css'
+import './attackClarity.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
