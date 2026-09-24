@@ -14,3 +14,8 @@ support39RuntimeOverrides['HDM-061'] = {
   ...support39RuntimeOverrides['HDM-061'],
   effectText: 'Search your Hoodmon Deck for 1 Trap card, or choose 1 Task from your separate Task Deck. A Trap is added to your hand; a chosen Task is moved to the top of your Task Deck. Then look at the top 2 cards of either Hoodmon Deck and rearrange them. If Capin MDH is in play, draw 1 card. DIGITAL RULES NOTE — Tamers live outside the Main Deck and cannot be searched into hand.',
 }
+
+support39RuntimeOverrides['HDM-078'] = {
+  ...support39RuntimeOverrides['HDM-078'],
+  effectText: 'TRUTH AMPLIFIER — Once per turn, when one of your Research, Psychic, or Trap cards reveals an opponent’s card or reduces a Hoodmon’s ATK, gain 1 Bond. RECORD. DECODE. REVEAL. — You may exhaust this Tamer to search your deck for 1 Truth Network: Research or “Oracle” card, reveal it, put it into your hand, then shuffle your deck.',
+}
